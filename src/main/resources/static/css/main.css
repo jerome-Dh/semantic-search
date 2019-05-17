@@ -1,0 +1,72 @@
+
+/**
+ * Feuille de styles principale
+ * @author Jerome Dh
+ * 
+ */
+@font-face {
+	font-family: black;
+	src: url(../fonts/BLACK.ttf);
+}
+
+@font-face {
+	font-family: beautiful;
+	src: url(../fonts/Beautiful.ttf);
+}
+
+@font-face {
+	font-family: vegan;
+	src: url(fonts/Vegan.ttf);
+}
+
+a {
+	text-decoration: none;
+}
+
+.bd-placeholder-img {
+	font-size: 1.125rem;
+	text-anchor: middle;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+@media (min-width: 768px) {
+
+	.bd-placeholder-img-lg {
+		font-size: 3.5rem;
+	}
+}
+body > main {
+
+	margin-top: 100px;
+}
+footer a{
+
+	font-size: 13px;
+}
+
+[id *= 'row-'] h4{
+	color: darkblue;
+}
+
+[id *= 'row-'] a{
+	color: green;
+}
+#result {
+	min-height:200px;
+}
+#choixCible > button {
+	
+	min-width: 120px;
+	
+} 
+
+#search {
+	height:50px; 
+	font-weight:light; 
+	font-size:20px;
+}		
+ 
+ 
