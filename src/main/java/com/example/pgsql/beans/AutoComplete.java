@@ -22,21 +22,20 @@ public class AutoComplete
 	{
 		return label;
 	}
-	
+
 	public String getDescription()
 	{
 		return description;
 	}
-	
 
 	public void setLabel(String label)
 	{
 		this.label = label;
 	}
-
+	
 	public void setDescription(String description)
 	{
 		this.description = description;
 	}
-	
+
 }

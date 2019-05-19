@@ -18,7 +18,10 @@ import java.util.StringTokenizer;
 import java.util.List;
 import java.util.ArrayList;
 
-
+/**
+ * Réquête sur l'ontologie O4UPRDF.owl
+ */
+ 
 public class O4UPRDF extends BaseOnto
 {
 
@@ -59,7 +62,7 @@ public class O4UPRDF extends BaseOnto
     }
 	
 	/**
-	 * Rechercher pour l'autocompletion
+	 * Rechercher les titres pour l'autocompletion
 	 */
 	public List<AutoComplete> autoCompleteQuery(List<AutoComplete> list, String term)
 	{

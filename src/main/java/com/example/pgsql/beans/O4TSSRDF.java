@@ -19,11 +19,15 @@ import java.util.List;
 import java.util.ArrayList;
 
 
+/**
+ * Réquête sur l'ontologie O4TSSRDF.owl
+ */
+ 
 public class O4TSSRDF extends BaseOnto
 {
 
    	/**
-	 * Lancer une Full search
+	 * Faire une Full search
 	 *
 	 */
 	public JSONResponse fullQuery(JSONResponse jsonResponse, String term)
@@ -61,7 +65,7 @@ public class O4TSSRDF extends BaseOnto
     }
 	
 	/**
-	 * Rechercher pour l'autocompletion
+	 * Faire une recherche des titres pour l'autocompletion
 	 */
 	public List<AutoComplete> autoCompleteQuery(List<AutoComplete> list, String term)
 	{

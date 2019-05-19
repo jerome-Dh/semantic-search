@@ -26,7 +26,7 @@ import com.example.pgsql.beans.*;
 @RestController
 public class Jena 
 {
-   
+
 	//@CrossOrigin(origins = "http://localhost:9000")
 	@CrossOrigin()
 	@GetMapping("testAjax")
@@ -43,7 +43,9 @@ public class Jena
 		return repository.findByQuestion(term);
 	}
 	
-	
+	/**
+	 * Auto-complétetion
+	 */
 	@CrossOrigin()
 	@GetMapping("autocomplete")
 	public List<AutoComplete> autocomplete(@RequestParam(required=false, defaultValue="") String term)
@@ -55,6 +57,9 @@ public class Jena
 
 	}
 	
+	/**
+	 * Recherche complète
+	 */
 	@CrossOrigin()
 	@GetMapping("fullsearch")
 	public JSONResponse fullsearch(@RequestParam(required=false, defaultValue="") String term)

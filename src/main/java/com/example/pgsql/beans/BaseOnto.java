@@ -20,7 +20,7 @@ import java.util.ArrayList;
 
 
 public class BaseOnto {
-	
+
 	// Répertoire des données rdf, owl, ..
     public static final String SOURCE = "./data/";
 
@@ -56,7 +56,7 @@ public class BaseOnto {
 	}
 
 	/**
-	 * Construire la chaine de réquête
+	 * Construire la chaine de réquête (REGEX)
 	 */
 	protected String construireRegex(String term)
 	{
@@ -68,7 +68,8 @@ public class BaseOnto {
 		String convert = "(" + term + ")";
 		for(int i=0; i < taille; ++i)
 		{
-			convert += "|(" + token.nextToken().trim() + ")";
+			String mot = token.nextToken().trim();
+			convert += "|(" + mot + ")";
 		}
 
 		return convert;
@@ -87,7 +88,7 @@ public class BaseOnto {
             ResultSet results = qexec.execSelect();
 
 			//Mes résultats
-			System.out.println("Mes résultats");
+			System.out.println("Les résultats");
 			System.out.println("+----------------------+----------------------+-------------------+");
 
 			int i = 0;
@@ -98,7 +99,7 @@ public class BaseOnto {
 				String	label = getLiteral(soln, "label");
 				String	genre = getLiteral(soln, "genre"); 
 
-				// Tester le type de résultat retourné
+				// Afficher le résultat retourné en console
 				System.out.println(
 					++i + ") " + 
 					label + " -+- " +
@@ -128,7 +129,7 @@ public class BaseOnto {
             ResultSet results = qexec.execSelect();
 
 			//Mes résultats
-			System.out.println("Mes résultats");
+			System.out.println("Les résultats");
 			System.out.println("+----------------------+----------------------+-------------------+");
 
 			int i = 0;
@@ -165,7 +166,7 @@ public class BaseOnto {
     }
 	
 	/**
-	 * Donnée rétournée
+	 * Obtenir un donnée littérale dans un résultat de réquête
 	 */
 	protected String getLiteral(QuerySolution soln, String champs)
 	{
@@ -193,6 +194,9 @@ public class BaseOnto {
 
 	}
 
+	/**
+	 * Créer un sur l'ontologie chargée
+	 */
 	protected OntModel getModel(String nom_fichier) 
 	{
         OntModel m = ModelFactory.createOntologyModel( OntModelSpec.OWL_MEM );
@@ -200,6 +204,9 @@ public class BaseOnto {
 		return m;
     }
 
+	/**
+	 * Charger une ontologie
+	 */
     protected void loadData( Model m, String nom_fichier ) {
         FileManager.get().readModel( m, SOURCE + nom_fichier );
     }

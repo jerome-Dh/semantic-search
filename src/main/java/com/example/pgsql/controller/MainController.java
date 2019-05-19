@@ -9,6 +9,10 @@ import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
 
+/**
+ * Controlleur principal du site
+ */
+
 @Controller
 public class MainController 
 {

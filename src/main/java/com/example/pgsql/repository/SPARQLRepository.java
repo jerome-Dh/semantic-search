@@ -12,6 +12,11 @@ import org.apache.jena.util.FileManager;
 
 import com.example.pgsql.beans.*;
 
+
+/**
+ * Repository pour la gestion des réquêtes SPARQL 
+ *
+ */
 public class SPARQLRepository
 {
 	public SPARQLRepository()
@@ -19,6 +24,9 @@ public class SPARQLRepository
 
 	}
 
+	/**
+	 * Gestion de l'autocomplétion
+	 */
 	public List<AutoComplete> findForAutoComplete(String term)
 	{
 		List<AutoComplete> list = new ArrayList<AutoComplete>();
@@ -39,6 +47,9 @@ public class SPARQLRepository
 
 	}
 
+	/**
+	 * Gestion des réquêtes à réponses complètes
+	 */
 	public JSONResponse fullSearch(String term)
 	{
 		//Capturer le temps au début
@@ -70,14 +81,13 @@ public class SPARQLRepository
 		System.out.println("\n+-------------------------------------------+\n");
         System.out.println("\tTemps d'exécution: "+ (t1 - t0) + " ms");
 		System.out.println("+\n-------------------------------------------+\n");
-
 		
 		return jsonResponse;
 
 	}
-	
+
 	/**
-	 * Trouver une réponse à la réquete
+	 * Test de réquêtes SPARQL
 	 */
     public JSONResponse findByQuestion(String question)
 	{
@@ -104,11 +114,6 @@ public class SPARQLRepository
             for(; results.hasNext() ; ) {
 
                 QuerySolution soln = results.nextSolution();
-                //Resource p = soln.getResource("p");
-                //Resource valeur = soln.getResource("valeur");
-                // RDFNode x = soln.get("varName")
-                // Literal l = soln.getLiteral("varL")
-                //System.out.println(" Mot : - " + valeur.toString());
 				RDFNode y = soln.get("p") ;
 				RDFNode x = soln.get("name") ;
 				RDFNode z = soln.get("prenom") ;
@@ -134,4 +139,5 @@ public class SPARQLRepository
 
 		return jsonResponse;
 	}
+
 }

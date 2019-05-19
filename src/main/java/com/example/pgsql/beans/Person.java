@@ -1,5 +1,8 @@
 package com.example.pgsql.beans;
 
+/**
+ * Classe réprésentant une personne
+ */
 public class Person
 {
 	private String name;

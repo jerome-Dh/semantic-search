@@ -1,5 +1,9 @@
 package com.example.pgsql.beans;
 
+
+/**
+ * Classe réprésentant une maladie
+ */
 public class Disease
 {
 

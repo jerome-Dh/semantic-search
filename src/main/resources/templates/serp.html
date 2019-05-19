@@ -38,10 +38,10 @@
 				<div class="collapse navbar-collapse" id="navbarCollapse">
 					<ul class="navbar-nav mr-auto">
 						<li class="nav-item active">
-							<a class="nav-link" href="index">EpiSearch <span class="sr-only">(Actuel)</span></a>
+							<a class="nav-link" href="/">EpiSearch <span class="sr-only">(Actuel)</span></a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="index">Accueil</a>
+							<a class="nav-link" href="/">Accueil</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link disabled" href="#">Images</a>
@@ -65,33 +65,40 @@
 		<main role="main">
 
 			<div id="zone-recherche" class="container">
+
 				<div class="row ">
+
 					<div class="col-md-9">
-						<div class="input-group mb-3 ">
-						
-							<div class="input-group-prepend" id="choixCible">
-								<button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Epicam</button>
-								<div class="dropdown-menu">
-								  <a class="dropdown-item" href="#" onclick="return switcher('epicam');">Epicam</a>
-								  <div role="separator" class="dropdown-divider"></div>
-								  <a class="dropdown-item" href="#" onclick="return switcher('dbpedia');">DBPedia</a>
+
+						<form action="serp" method="get">
+
+							<div class="input-group mb-3 ">
+
+								<div class="input-group-prepend" id="choixCible">
+									<button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Epicam</button>
+									<div class="dropdown-menu">
+									  <a class="dropdown-item" href="#" onclick="return switcher('epicam');">Epicam</a>
+									  <div role="separator" class="dropdown-divider"></div>
+									  <a class="dropdown-item" href="#" onclick="return switcher('dbpedia');">DBPedia</a>
+									</div>
 								</div>
+
+								<input type="text" id="search" class="form-control" placeholder="Trouver une maladie, un médicament ou un patient" aria-label="zone de recherche" aria-describedby="basic-addon2">
+
+								<div class="input-group-append">
+									<button class="btn btn-outline-primary" type="button" id="btn-search">
+										<i class="fa fa-search" aria-hidden="true"></i>
+									</button>
+								</div>
+
 							</div>
 
-						  <input type="text" id="search" class="form-control" placeholder="Trouver une maladie, un médicament ou un patient" aria-label="zone de recherche" aria-describedby="basic-addon2">
-						  
-						  <div class="input-group-append">
-							
-							<button class="btn btn-outline-primary" type="button" id="btn-search">
-								<i class="fa fa-search" aria-hidden="true"></i>
-							</button>
-						  </div>
-						</div>
-					
+						</form>
+
 					</div>
 				</div>
 			</div>
-		  
+
 		  <div class="album py-5 bg-light">
 			
 			<div class="container">

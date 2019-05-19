@@ -58,15 +58,20 @@ footer a{
 	min-height:200px;
 }
 #choixCible > button {
-	
 	min-width: 120px;
-	
 } 
 
 #search {
 	height:50px; 
 	font-weight:light; 
 	font-size:20px;
-}		
- 
- 
+}
+	
+.some-error .red{
+	color: #f00;
+	font-size:20px;
+}	
+.some-error, .loader {
+	height:50px; 
+	font-weight:light; 
+} 

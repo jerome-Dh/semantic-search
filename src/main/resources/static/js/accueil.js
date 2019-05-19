@@ -148,10 +148,10 @@
 	function lancerRecherche()
 	{
 		$('#zone-recherche form:first').submit();
-		
 	}
-	
+
 	$("#zone-recherche form:first").submit(function(e){
+
 		//e.preventDefault(); // Le navigateur ne peut pas envoyer le formulaire
 
 		//Envoyer le formulaire

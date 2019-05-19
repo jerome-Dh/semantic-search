@@ -2,13 +2,13 @@
 
 /***********************************************************
  *
- * 			SCRIPT DE TRAITEMENT AJAX
+ * 			SCRIPT DE TRAITEMENT AJAX/Jena
  *			@By Groupe 22
  *
  **********************************************************/
 
 	/**
-	* Variable d'état de recherche en Local /DBPedia
+	* Variable d'état de recherche en Local/DBPedia
 	*/
 	var rechercheLocal = true;
 
@@ -33,11 +33,11 @@
 		  source: function (request, response) {
 
 				console.log(request.term);
-				
+
 				var mot_cle = request.term;
-				
+
 				//console.log(rechercheLocal);
-				
+
 				//Si la recherche se fait en local
 				if(rechercheLocal)
 				{
@@ -49,12 +49,12 @@
 							response(data);
 						}
 					);
-					
+
 				}
 				else
 				{
 					//Lancer la recherche sur DBPedia
-					
+
 					var q = encodeURIComponent(
 						'select distinct ?titre '+
 						'where '+
@@ -93,13 +93,16 @@
 				if(rechercheLocal)
 				{
 					$( "#search" ).val( ui.item.label );
-					localFullSearch(ui.item.label);
+					// localFullSearch(ui.item.label);
 				}
 				else
 				{
 					$( "#search" ).val( ui.item.titre.value );
-					fullSearch(ui.item.titre.value);
+					// fullSearch(ui.item.titre.value);
 				}
+				
+				//Relancer la recherche en fonction du choix
+				lancerRecherche();
 
 				return false;
 
@@ -127,6 +130,19 @@
 		 * Lancer la recherche avec le bouton Rechercher
 		 */
 		$('#btn-search').click(lancerRecherche);
+		
+		/** 
+		 * Lancer le formulaire de recherche
+		 */
+		$("#zone-recherche form:first").submit(function(e){
+
+			// Le navigateur ne peut pas envoyer le formulaire
+			e.preventDefault(); 
+
+			//Envoyer le formulaire
+			lancerRecherche();
+		
+		});
 
 		console.log("Ca passe ! ");
 
@@ -134,7 +150,7 @@
 
 
 	/**
-	 * Trouver le QueryString et lancer la recherche
+	 * Trouver s'il y a le QueryString et lancer la recherche
 	 */
 	function queryString()
 	{
@@ -156,7 +172,7 @@
 			const cible_storage = localStorage.getItem('cible');
 
 			if(cible_storage != null)
-			{	
+			{
 				console.log(' Cible stocké ' + cible_storage);
 				switcher(cible_storage);
 			}
@@ -205,14 +221,83 @@
 	}
 
 	/**
+	 * Chargement du loader
+	 */
+	function chargementLoader()
+	{
+		var loader = 
+		'<div class="loader text-center">' +
+			'<i class="fa fa-circle-o-notch fa-spin fa-5x fa-fw"></i>' +
+			'<span class="sr-only">Chargement...</span>'
+		'</div>';
+		$("#result").html(loader);
+	}
+
+	/**
+	 * Afficher un message de non trouvé
+	 *
+	 */
+	function showNotFoundResult()
+	{
+		var title = 'Aucun résultat n\'a été trouvé sur ' +
+				(rechercheLocal ? 'Epicam' : 'DBPedia');
+			texte = 'Entrez un autre terme de recherche <em>(ou essayez sur <strong>'+
+				(rechercheLocal ? 'DBPedia' : 'Epicam') +
+				'</strong>)</em>';
+
+		showSomeError(title, texte);
+
+	}
+
+	/**
+	 * Afficher un message d'erreur de connexion
+	 *
+	 */
+	function showErrorConnexion()
+	{
+		var title = 'Impossible d\'effectuer la réquête ';
+			texte = 'Vérifiez votre connexion internet, puis rééssayez !';
+
+		showSomeError(title, texte);
+
+	}
+
+	/**
+	 * Afficher un message d'erreur sur la page
+	 *
+	 */
+	function showSomeError(title, texte)
+	{
+		var t = 
+			'<div class="text-center some-error">' +
+				'<p><strong class="red">' + 
+					'<i class="fa fa-exclamation-triangle" aria-hidden="true"></i> '+
+					title + '</strong></p>' +
+				'<p>' + texte + '</p>' +
+			'</div>';
+
+		$("#result").html(t);
+
+	}
+	
+	
+
+	/**
 	 * Lancer la recherche avec le terme en cours
-	 * En local ou sur DBPedia
+	 * 
 	 */
 	function lancerRecherche()
 	{
+		//Récupérer la valeur dans la zone de recherche
 		var term = $( "#search" ).val();
 		if(term.length > 1)
 		{
+			//Effacer le résultat courant e
+			clearOldResults();
+
+			//Loader attente
+			chargementLoader();
+
 			if(rechercheLocal)
 			{
 				localFullSearch(term);
@@ -235,9 +320,9 @@
 	function fullSearch(term)
 	{
 		var new_term = getTermSearch(term);
-		
+
 		console.log("New term: " + new_term);
-		
+
 		var q = encodeURIComponent(
 				'select distinct ?titre ?resume ?description ?wiki ?image ' +
 				'where '+
@@ -281,16 +366,21 @@
 			function (data) {
 				console.log(data);
 				printSearch(data.results.bindings);
-
 			}
-		);
+		)
+		.fail(function(result, textStatus, errorThrown) {
+			console.log("Erreur query: " + textStatus);
+			showErrorConnexion();
+		});
 
 	}
 	
-	/** Lancer la full recherche en local **/
+	/**
+     *	Lancer la full recherche en local 
+	 */
 	function localFullSearch(term)
 	{
-		
+
 		console.log("New term: " + term);
 				
 		var url = 'http://localhost:8080/fullsearch?term=' + term
@@ -301,7 +391,11 @@
 				printLocalSearch(data.diseases);
 
 			}
-		);
+		)
+		.fail(function(result, textStatus, errorThrown) {
+			console.log("Erreur query: " + textStatus);
+			showErrorConnexion();
+		});
 
 	}
 
@@ -321,8 +415,12 @@
 				if(chaines[i].length > 2)
 					response.push(chaines[i]);
 			}
+			ret = '';
+			if(taille > 1)
+				ret = '(' + term + ')|';
 
-			return '(' + term + ')|(' + response.join(')|(') + ')';
+			return ret + '(' + response.join(')|(') + ')';
+
 		}
 
 		return texte;
@@ -331,7 +429,7 @@
 
 	/**
 	 * 
-	 * Imprimer le résultat d'une recherche
+	 * Imprimer le résultat d'une recherche de DBPedia
 	 * 
 	 * @param data - tableau de données 
 	 */
@@ -341,9 +439,16 @@
 		if(Array.isArray(data))
 		{
 			var taille = data.length;
-			var template;
+			// var template;
 			clearOldResults();
 
+			//S'il n'y a aucun résultat
+			if(taille == 0)
+			{
+				showNotFoundResult();
+				return;
+			}
+			
 			var pancard_deja = false;
 
 			for(var i=0; i < taille; ++i)
@@ -399,8 +504,15 @@
 		if(Array.isArray(data))
 		{
 			var taille = data.length;
-			var template;
+			// var template;
 			clearOldResults();
+			
+			//S'il n'y a aucun résultat
+			if(taille == 0)
+			{
+				showNotFoundResult();
+				return;
+			}
 
 			var pancard_deja = false;
 
@@ -447,9 +559,10 @@
 		}
 
 	}
-
+	
+	
 	/**
-	 * Construire un template
+	 * Construire un template répresentant une réponse
 	 *
 	 */
 	function getForTemplate(id, titre, resume, wiki, local = true)
@@ -478,10 +591,14 @@
 			'</div>'+
 		'</div>';
 
-		  return makeTemplate;
+		return makeTemplate;
 
 	}
 	
+	/**
+	 * Aficher la pancard droite
+	 *
+	 */
 	function show_pancard(titre, resume, description, wiki, photo)
 	{
 		var photo_html = (photo == false) ? 
@@ -523,7 +640,7 @@
 	}
 
 	/** 
-	 * Construire le modal dialog
+	 * Construire le modal dialog pour la description d'un élement de réponse
 	 */
 	function makeModalDialod(id, titre, resume, description, wiki, photo)
 	{

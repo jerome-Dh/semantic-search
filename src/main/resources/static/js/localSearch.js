@@ -1,5 +1,0 @@
-
-
-/**
- * La recherche locale
- */

@@ -3,6 +3,9 @@ package com.example.pgsql.beans;
 import java.util.List;
 import java.util.ArrayList;
 
+/**
+ * Classe répresentant le résultat à renvoyer sous forme JSON
+ */
 public class JSONResponse
 {
 	List<Disease> diseases = new ArrayList<Disease>();
