@@ -10,15 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.CrossOrigin;;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import javax.validation.Valid;
-
-// The ARQ application API.
-import org.apache.jena.atlas.io.IndentedWriter ;
-import org.apache.jena.query.* ;
-import org.apache.jena.rdf.model.* ;
-import org.apache.jena.vocabulary.DC ;
-import org.apache.jena.util.FileManager;
 
 import com.example.pgsql.repository.*;
 import com.example.pgsql.beans.*;
@@ -27,50 +20,85 @@ import com.example.pgsql.beans.*;
 public class Jena 
 {
 
-	//@CrossOrigin(origins = "http://localhost:9000")
-	@CrossOrigin()
-	@GetMapping("testAjax")
-	public JSONResponse testAjax(@RequestParam(required=false, defaultValue="") String term)
-	{
-		long t0, t1;
-            t0 = System.currentTimeMillis();
-
-		SPARQLRepository repository = new SPARQLRepository();
-
-		t1 = System.currentTimeMillis();
-        System.out.println("Temps d'exécution = "+(t1 - t0));
-
-		return repository.findByQuestion(term);
-	}
-	
 	/**
 	 * Auto-complétetion
 	 */
 	@CrossOrigin()
 	@GetMapping("autocomplete")
-	public List<AutoComplete> autocomplete(@RequestParam(required=false, defaultValue="") String term)
+	public List<AutoComplete> autocomplete(
+		@RequestParam(required=false, defaultValue="") String term)
 	{
 
-		SPARQLRepository repository = new SPARQLRepository();
+		//SPARQLRepository repository = new SPARQLRepository();
 
+		SPARQLThreadRepository repository = new SPARQLThreadRepository();
 		return repository.findForAutoComplete(term);
+
+	}
+
+	/**
+	 * Recherche complète (Full)
+	 */
+	@CrossOrigin()
+	@GetMapping("fullsearch")
+	public JSONResponse fullsearch(
+		@RequestParam(required=false, defaultValue="") String term,
+		@RequestParam(required=false, defaultValue="1") String thread
+		)
+	{
+		//Temps début
+		long t0 = debutExecution();
+
+		JSONResponse jsonresponse;
+		if(thread.equals("1"))
+		{
+			System.out.println("\t\t Execution multithread \n\n");
+			SPARQLThreadRepository repository = new SPARQLThreadRepository();
+			jsonresponse = repository.fullSearch(term);
+		}
+		else
+		{
+			System.out.println("\t\t Execution monothread \n\n");
+			SPARQLRepository repository = new SPARQLRepository();
+			jsonresponse = repository.fullSearch(term);
+		}
+
+		//Fin d'exécution
+		finExecution(t0);
+
+		return jsonresponse;	
 
 	}
 	
 	/**
-	 * Recherche complète
+	 * Début de l'exécution
 	 */
-	@CrossOrigin()
-	@GetMapping("fullsearch")
-	public JSONResponse fullsearch(@RequestParam(required=false, defaultValue="") String term)
+	private long debutExecution()
 	{
-		SPARQLRepository repository = new SPARQLRepository();
+		//Capturer le temps au début
 
-		return repository.fullSearch(term);
+		System.out.println("\n+-------------------------------------------+");
+		System.out.println("\t\t Début d'exécution ");
+		System.out.println("+-------------------------------------------+\n\n");
+		System.out.println("\t\t Réquête en cours \n\n");
+
+		return System.currentTimeMillis();
 
 	}
 	
+	/**
+	 * Fin de l'exécution
+	 */
+	private void finExecution(long t0)
+	{
+		// == Calcul du temps d'exécution
+		long t1 = System.currentTimeMillis();
 
+		System.out.println("\n+-------------------------------------------+\n");
+        System.out.println("\t\tTemps d'exécution: "+ (t1 - t0) + " ms");
+		System.out.println("\n-------------------------------------------+\n");
+
+	}
 }
 
 
