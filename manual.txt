@@ -1,0 +1,181 @@
+EpiSearch
+
+capture
+
+EpiSearch est un moteur de reherche sémantique qui utilise 
+les ontologie d'Epicam et ceux de DBPedia pour offrir les 
+informations à l'utilisateur concernant les maladies, les 
+médicaments et les patients atteints de certains symtômes
+
+
+Commencer
+
+EpiSearch exploite le parallélisme afin d'offrir une vitesse de
+traitement plus conviviale à l'attente de son utilisateur.
+
+Il est conçu en exploitant les outils les plus performants et
+des technologies hautement à jour pour améléorer les résulats des recherches
+
+Avant d'exploiter EpiSearch, il est nécessaire d'avoir un environnement
+prêt à l'acceuil
+
+
+Conditions préalables d'installation
+
+Il faut disposer d'une machine serveur capable d'exploiter le parallélisme 
+offert par l'application afin d'en bénéficier d'une bonne performance. 
+
+Les outils logiciels peuvent être installés séparement mais il est 
+conseillé d'utiliser ceux qui sont fournis avec l'application car
+celà constitue déjà un environnement préconfiguré et gère les
+dépendances nécessaires.
+
+Les logiciels et outils suivants sont nécessaires pour son déploiment
+
+- Windows version >= 8 ou Linux( version >= 16)
+- RAM 4Go ou plus
+- La JRE >= 11
+- Apache Maven >= 3
+- Spring core et compagnies (Automatiquement installés lors du déploiment)
+- PosgreSQL >= 11
+- Winrar >= 5
+
+
+Installation
+
+L'installation fait suite à l'installation des outils nécessaires, 
+s'ils sont déjà complets, alors vous pouvez commencer l'installation
+
+- Si vous ne disposer pas du fichier nommé "semantic-search.zip",
+Rendez-vous sur GitHub et téléchargez-le: https://github.com/jerome-Dh/semantic-search
+Une fois sur cette page cliquez sur "clone" pour obtenir le fichier 
+"semantic-search.zip"
+
+- Si vous disposez du fichier "semantic-search.zip" 
+alors créez un repertoire de votre choix, de préférence nommez-le
+"episearch" ou un autre nom de votre choix
+- Rendez-vous dans le dossier nouvellement créer et coller le fichier
+"semantic-search.zip" obtenu à l'étape précédente
+- Faites un click droit sur le fichier afin de le décompresser, choisissez 
+"extraire ici" si vous disposez de Winrar
+- Déplacez-vous dans le dossier nommé "semantic-search", c'est le dossier créer juste après 
+l'extraction et contenant les ressources nécessaire pour l'installation
+du moteur de recherche
+- Une fois dans le dossier "semantic-search", vous verrez plusieurs autres dossiers
+et fichiers tels que "README.md", "src", ...
+- Maintenant connectez-vous à internet pour la suite 
+- Si tout fonctionne jusqu'ici, rendez-vous dans le dossier"semantic-search"
+et lancer l'installation des dépendances en double-cliquant sur le 
+fichier "launch.cmd", il s'agit d'un fichier d'automatisation de 
+l'installation des dépendances.
+
+- Attendez que l'installation termine, celà prendra plus de 5 minutes et
+dépendra de votre débit de connexion internet
+
+- Une fois le téléchargement des dépendances terminées, le serveur 
+d'application démarrera automatiquement et ensuite vous verrez le
+message ci-dessous apparaitre dans votre console,
+
+capture
+
+- Alors là l'installation et le démarrage ont bien fonctionné
+Vous pouvez passer à la phase des tests
+
+
+Exploiter l'application
+
+A ce stade, vous dévriez avoir un serveur Java qui tourne sur votre machine et 
+exécute l'application EpiSearch, si tel n'est pas le cas rendez-vous 
+dans la section précédente pour l'installer
+
+- Ouvrez votre navigateur et lancez l'url d'adresse "http://localhost:8080/"
+Vous dévriez normalement voir la page suivante s'afficher
+
+
+- Alors tout fonctionne parfaitement, utiliser les liens situés
+dans le pied de page pour vous rendre dans les pages d'aide, de confidentialités ou
+du code source
+
+- EpiSearch contient des pages organisées comme suite
+* Accueil permettant de taper un mot-clé de recherche
+* Affichage des résulats pour voir les résulats de recherche
+* Le temps de réponse est fourni pour donner à l'utilisateur une estimation de 
+l'efficacité de la vitesse fournie par le parallélisme
+* Il dispose d'un menu permettant à son utilisateur de changer la langue 
+d'affichage des résulats
+* Des pages de connexion et d'inscription sont fourni pour permettre 
+aux utilisateurs de sauvegarder leurs préférences
+* En navigant sur EpiSearch, vous apprendrez plein d'autres gadgets 
+qui vous faciliterons les récherches et fournirons des résulats plus 
+pertinents
+
+
+Comme nous le disions, EpiSearch est simple d'utilisation et fourni une
+navigation simple mais fluide et intuitive à son utilisateur
+
+- Effectuer des recherche sur DBPedia ou Epicam en utilisant simplement
+le menu déroulant pour changer de direction
+
+- Changer la langue d'affichage des réponses sur le pied de page 
+
+- La création de compte et la connexion sont simples et prenenent maxi 2 minutes
+
+- La page d'aide fournie de plus amples informations à tout utilisateur 
+désirant obtenir des réponses bréves
+
+- En fin, l'application dispose d'une page de contact permettant de joindre
+les développeurs pour leurs soumettre toute question de nature 
+technique ou autres.
+
+### Organisation des dossiers
+
+Après l'obtention du fichier "semantic-search.zip", cette organisation 
+est définie
+
+- Le dossier "src" contient le code sources et des tests pour toute personne
+désireux de prendre connaissance ou d'y travailler
+- les dossiers "target" et ".mvn" sont utilisés par l'application 
+pour gérer ses dépendances
+ 
+
+## Les outils suivants ont permis de mettre sur pied EpiSearch
+
+- Linux 
+- Le framework Spring
+- Notepad++
+- JDK
+- PosgreSQL
+- Apache Maven
+
+
+## Contribuants
+
+
+### Auteurs
+
+*** Travail initial : Jerome Dh
+- [GitHub](https://github.com/jerome-Dh)
+- [LinkedIn](https://www.linkedin.com/in/jerome-dh)
+
+### Contributeurs
+Les contributeurs de ce projet sont des étudiants de l'université de
+Yaoundé I pour la plus part.
+Il s'agit principalement de 
+
+- Jerome Dh
+- Mekofet Cyrille
+- Serges Mutlen
+- Mbouna Patrick 
+
+qui ont mis sur pied la prémière architecture et la version exploitable du moteur de
+recherche
+
+## Licence
+
+Ce projet est sous licence MIT - voir le fichier [MIT license](https://opensource.org/licenses/MIT).
+
+## Remerciements
+
+* A toute personne dont le code a été utilisé
+* A tous les contributeurs
+
