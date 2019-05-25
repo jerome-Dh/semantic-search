@@ -1,0 +1,20 @@
+
+/** Styles pour la page d'accueil **/
+
+body > main .album {
+	min-height:220px;
+	padding-top: 120px;
+}
+body > main {
+	margin-top: 130px;
+}
+#title-search h1 {
+	font-family: beautiful;
+	font-weight: bold;
+	color: rgb(133,96,168)!important;
+	letter-spacing: 5px;
+}
+#title-search {
+	margin-bottom:20px;
+}
+
