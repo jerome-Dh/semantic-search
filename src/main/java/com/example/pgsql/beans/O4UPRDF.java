@@ -29,16 +29,19 @@ public class O4UPRDF extends BaseOnto
 	 * Lancer une Full search
 	 *
 	 */
-	public JSONResponse fullQuery(JSONResponse jsonResponse, String term)
+	public List<Disease> fullQuery(String term)
 	{
 		term = construireRegex(term);
-		System.out.println("+\nLe term: " + term + "\n");
+		/* System.out.println("+\nLe term: " + term + "\n"); */
 
 		OntModel m = getModel("O4UPRDF.owl");
-        jsonResponse = showFullQuery(jsonResponse, m,
-                   getPrefix() +
-                   "select distinct ?classe ?label ?comment ?genre ?lienWiki" +
-				   "	where " +
+
+		List<Disease> response;
+
+        response = showFullQuery(m,
+					getPrefix() +
+					"select distinct ?classe ?label ?comment ?genre ?lienWiki" +
+					"	where " +
 						"{ " +
 							"{ " +
 								"?classe a owl:Class ." +
@@ -57,19 +60,22 @@ public class O4UPRDF extends BaseOnto
 						"} " +
 						"LIMIT 20");
 
-		return jsonResponse;
+		return response;
 		
     }
 	
 	/**
 	 * Rechercher les titres pour l'autocompletion
 	 */
-	public List<AutoComplete> autoCompleteQuery(List<AutoComplete> list, String term)
+	public List<AutoComplete> autoCompleteQuery(String term)
 	{
 		term = construireRegex(term);
 
 		OntModel m = getModel("O4UPRDF.owl");
-        list = showAutoCompleteQuery(list, m,
+
+		List<AutoComplete> list;
+
+        list = showAutoCompleteQuery(m,
                    getPrefix() +
                    "select distinct ?label ?genre" +
 				   "	where " +
