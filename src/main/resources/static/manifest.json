@@ -1,0 +1,21 @@
+{
+  "short_name": "Episearch",
+  "name": "Recherche sémantique à travers les ontologies",
+  "icons": [
+    {
+      "src": "/images/logo.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/images/logo.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#f1f1f1",
+  "display": "standalone",
+  "scope": "/serp/",
+  "theme_color": "#f1f1f1"
+}
