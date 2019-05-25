@@ -22,6 +22,11 @@ public class JSONResponse
 		diseases.add(disease);
 	}
 
+	public void addDiseases(List<Disease> diseases)
+	{
+		this.diseases.addAll(diseases);
+	}
+
 	public void addPerson(Person person)
 	{
 		persons.add(person);
