@@ -79,18 +79,21 @@ public class BaseOnto {
 	/**
 	 * Afficher le résultat de l'autocompletion
 	 */
-	protected List<AutoComplete> showAutoCompleteQuery(List<AutoComplete> list, Model m, String q ) 
+	protected List<AutoComplete> showAutoCompleteQuery( Model m, String q ) 
 	{
+		List<AutoComplete> list = new ArrayList<AutoComplete>();
 
 		Query query = QueryFactory.create( q );
         QueryExecution qexec = QueryExecutionFactory.create( query, m );
-        try {
+        
+		try 
+		{
             ResultSet results = qexec.execSelect();
 
 			//Mes résultats
-			System.out.println("Les résultats");
+			/* System.out.println("Les résultats");
 			System.out.println("+----------------------+----------------------+-------------------+");
-
+			*/
 			int i = 0;
 			for ( ; results.hasNext() ; )
 			{
@@ -100,38 +103,42 @@ public class BaseOnto {
 				String	genre = getLiteral(soln, "genre"); 
 
 				// Afficher le résultat retourné en console
-				System.out.println(
+				/* System.out.println(
 					++i + ") " + 
 					label + " -+- " +
 					genre + " -+- " 
-					);
+					); */
 	
 				list.add(new AutoComplete(label, genre));
 			}
         }
-        finally {
+        finally 
+		{
             qexec.close();
         }
 
 		return list;
 
     }
-	
+
 	/**
 	 * Afficher le résultat FullQuery
 	 */
-	protected JSONResponse showFullQuery( JSONResponse jsonResponse, Model m, String q ) 
+	protected List<Disease> showFullQuery( Model m, String q ) 
 	{
+		List<Disease> diseases = new ArrayList<Disease>();
 
 		Query query = QueryFactory.create( q );
         QueryExecution qexec = QueryExecutionFactory.create( query, m );
-        try {
+
+		try 
+		{
             ResultSet results = qexec.execSelect();
 
 			//Mes résultats
-			System.out.println("Les résultats");
+			/* System.out.println("Les résultats");
 			System.out.println("+----------------------+----------------------+-------------------+");
-
+			*/
 			int i = 0;
 			for ( ; results.hasNext() ; )
 			{
@@ -144,16 +151,16 @@ public class BaseOnto {
 				String lienWiki = getLiteral(soln, "lienWiki");
 
 				// Tester le type de résultat retourné
-				System.out.println(
+				/* System.out.println(
 					++i + ") " + 
 					classe + " -+- " + 
 					label + " -+- " + 
 					comment + " -+- " + 
 					genre + " -+- " +
 					lienWiki
-					);
+					); */
 					
-				jsonResponse.addDisease(new Disease(label, comment, genre, lienWiki));
+				diseases.add(new Disease(label, comment, genre, lienWiki));
 
 			}
         }
@@ -161,7 +168,7 @@ public class BaseOnto {
             qexec.close();
         }
 
-		return jsonResponse;
+		return diseases;
 
     }
 	
