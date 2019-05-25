@@ -10,7 +10,8 @@
 	/**
 	* Variable d'état de recherche en Local/DBPedia
 	*/
-	var rechercheLocal = true;
+	var rechercheLocal = true,
+		temps_debut = 0;
 
 	/**
 	 * Lancer la recherche/configurer au début
@@ -64,7 +65,7 @@
 							'UNION '+
 							'{ ?maladie a <http://dbpedia.org/ontology/Disease>; '+
 								'rdfs:label ?titre. } '+
-							'FILTER langMatches(lang(?titre), "fr") '+
+							'FILTER langMatches(lang(?titre), "' + getUserLanguage() + '") '+
 							'FILTER REGEX(?titre, "'+ request.term + '") '+
 						'} LIMIT 15 '
 						);
@@ -144,10 +145,9 @@
 		
 		});
 
-		console.log("Ca passe ! ");
+		console.log("Le script DBPedia passe ! ");
 
 	});
-
 
 	/**
 	 * Trouver s'il y a le QueryString et lancer la recherche
@@ -178,6 +178,7 @@
 			}
 
 		}
+
 	}
 
 	/*
@@ -209,7 +210,26 @@
 		return false;
 
 	}
-	 
+
+	/**
+	 * Imprimer le temps d'une recherche
+	 * 
+	 * @param debut - temps de debut 
+	 * @param fin - temps de fin 
+	 */
+	function printTimeSearch(debut)
+	{
+		
+		var fin = new Date().getTime();
+
+		var texte = '<span class="text-muted"> '+
+			'Temps écoulé: ' + (fin - debut) + ' ms </span>'; 
+
+		console.log('Temps de recherche: ' + texte);
+		$('#search_time').html(texte);
+
+	}
+
 	/**
 	 * Nettoyer les anciens résultats
 	 */
@@ -218,6 +238,7 @@
 		$("#result").html('');
 		$("#pancard-droite").html('');
 		$('#modalZone').html('');
+		$('#search_time').html('');
 	}
 
 	/**
@@ -298,6 +319,9 @@
 			//Loader attente
 			chargementLoader();
 
+			//Capturer le temps
+			temps_debut = new Date().getTime();
+
 			if(rechercheLocal)
 			{
 				localFullSearch(term);
@@ -352,9 +376,9 @@
 							'?maladie dbo:thumbnail ?image ' +
 						'} ' +
 					'} ' +
-					'FILTER langMatches(lang(?resume), "fr") ' +
-					'FILTER langMatches(lang(?description), "fr") ' +
-					'FILTER langMatches(lang(?titre), "fr") ' +
+					'FILTER langMatches(lang(?resume), "' + getUserLanguage() + '") ' +
+					'FILTER langMatches(lang(?description), "' + getUserLanguage() + '") ' +
+					'FILTER langMatches(lang(?titre), "' + getUserLanguage() + '") ' +
 					'FILTER REGEX(?titre, "'+ new_term + '") '+
 				'} LIMIT 10'
 			);
@@ -383,7 +407,7 @@
 
 		console.log("New term: " + term);
 				
-		var url = 'http://localhost:8080/fullsearch?term=' + term
+		var url = 'http://localhost:8080/fullsearch?term=' + term + '&thread=' + getParamThread();
 		$.getJSON(
 			url,
 			function (data) {
@@ -426,21 +450,24 @@
 		return texte;
 
 	}
-
+	
+	
 	/**
-	 * 
 	 * Imprimer le résultat d'une recherche de DBPedia
 	 * 
 	 * @param data - tableau de données 
 	 */
 	function printSearch(data)
-	{
-
+	{	
 		if(Array.isArray(data))
 		{
 			var taille = data.length;
+
 			// var template;
 			clearOldResults();
+			
+			//Temps écoulé
+			printTimeSearch(temps_debut);
 
 			//S'il n'y a aucun résultat
 			if(taille == 0)
@@ -507,6 +534,9 @@
 			// var template;
 			clearOldResults();
 			
+			//Temps écoulé
+			printTimeSearch(temps_debut);
+			
 			//S'il n'y a aucun résultat
 			if(taille == 0)
 			{
@@ -539,7 +569,7 @@
 					);
 				}
 
-				$("#result").append(
+				$('#result').append(
 					getForTemplate(i,
 						label, 
 						comment,
