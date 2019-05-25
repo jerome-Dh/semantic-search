@@ -69,6 +69,13 @@
 			<version>3.11.0</version>
 		</dependency>
 		
+		<!-- Open MP for run paralelle code -->
+		<dependency>
+			<groupId>org.omp4j</groupId>
+			<artifactId>abego</artifactId>
+			<version>1.2_2</version>
+		</dependency>
+		
 	</dependencies>
 
 	<build>
