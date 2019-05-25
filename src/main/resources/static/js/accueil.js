@@ -1,9 +1,9 @@
 
-/*************************************************************
- * 
- *			SCript pour la page d'accueil
- *
- ************************************************************/
+	//////////////////////////////////////////////////////////
+	// 
+	//		Page d'accueil
+	//
+	//////////////////////////////////////////////////////////
  
 	/**
 	* Variable d'état de recherche en Local /DBPedia
@@ -137,9 +137,17 @@
 		 */
 		$('#btn-search').click(lancerRecherche);
 
-		console.log("Ca passe ! ");
+		console.log("Le script d'accueil passe ! ");
 
 	});
+
+
+	/////////////////////////////////////////////////////
+	//
+	//		Utilitaires
+	//
+	////////////////////////////////////////////////////
+
 
 	 /**
 	 * Lancer la recherche avec le terme en cours
