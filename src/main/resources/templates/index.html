@@ -1,86 +1,24 @@
 
 <!doctype html>
-<html lang="fr">
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
 
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<meta name="description" content="Moteur de recherche sémantique pour Epicam">
-		<meta name="author" content="Jerome Dh, Serges, Cyrille, Patrick">
-		<meta name="generator" content="Jekyll v3.8.5">
+	<!-- Insertion du head -->
+	<head th:replace="fragments/header :: header(~{::title},~{::link})">
 
-		<!-- Icone-->
-		<link rel="icon" href="images/logo.png" type="image/png" sizes="16x16">
+		<title>Moteur de recherche sémantique sur Epicam & DBPedia</title>
 
-		<title>Moteur de recherche sémantique pour Epicam</title>
-
-		<!-- Bootstrap core CSS -->
-		<link href="css/bootstrap.min.css" rel="stylesheet">
-
-		<!-- <link href="css/font-awesome.min.css" rel="stylesheet"> -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
-		<!-- <link href="css/bootstrap-theme.min.css" rel="stylesheet"> -->
-		<link href="css/jquery-ui.css" rel="stylesheet">
-		<link href="css/main.css" rel="stylesheet">
-		<style type="text/css">
-			body > main .album {
-				min-height:220px;
-				padding-top: 120px;
-			}
-			body > main {
-				margin-top: 130px;
-			}
-			#title-search h1{
-				font-family: beautiful;
-				font-weight: bold;
-				color: rgb(133,96,168)!important;
-				letter-spacing: 5px;
-			}
-			#title-search {
-				margin-bottom:20px;
-			}
-		</style>
+		<link href="css/accueil.css" rel="stylesheet">
 
 	</head>
-	<body>
-		<header>
-			<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-				<a class="navbar-brand" href="#">
-					<img src="images/logo.png" width="50"/>
-				</a>
-				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-				<div class="collapse navbar-collapse" id="navbarCollapse">
-					<ul class="navbar-nav mr-auto">
-						<li class="nav-item active">
-							<a class="nav-link" href="/">EpiSearch <span class="sr-only">(Actuel)</span></a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="/">Accueil</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link disabled" href="#">Images</a>
-						</li>
-					</ul>
-			
-					<button type="button" class="btn btn-primary navbar-btn" data-toggle="modal" data-target=".connexion-modale">
-						<i class="fa fa-user-circle-o" aria-hidden="true"></i> 
-						Connexion
-					</button>
-					&nbsp;
-					<button type="button" class="btn btn-success navbar-btn" data-toggle="modal" data-target=".inscription-modale">
-						<i class="fa fa-user-plus" aria-hidden="true"></i>
-						Inscription
-					</button>
-				
-				</div>
 
-			</nav>
+	<body>
+
+		<!-- La barre de menu haute -->
+		<header th:replace="fragments/menu_top :: menu_top">
 
 		</header>
 
+		<!-- Le conteneur principale -->
 		<main role="main">
 
 			<div id="title-search">
@@ -98,35 +36,12 @@
 						<div class="col-md-8" id="zone-recherche">
 
 							<!-- Formulaire de recherche -->
-							<form action="serp" method="get">
-								
-								<div class="input-group mb-3 ">
-
-									<div class="input-group-prepend" id="choixCible">
-										<button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Epicam</button>
-										<div class="dropdown-menu">
-										  <a class="dropdown-item" href="#" onclick="return switcher('epicam');">Epicam</a>
-										  <div role="separator" class="dropdown-divider"></div>
-										  <a class="dropdown-item" href="#" onclick="return switcher('dbpedia');">DBPedia</a>
-										</div>
-									</div>
-
-									<input type="text" name="q" id="search" class="form-control" placeholder="Trouver une maladie, un médicament ou un patient" aria-label="zone de recherche" aria-describedby="basic-addon2">
-
-									<input type="hidden" name="cible" value="epicam">
-
-									<div class="input-group-append">
-										<button class="btn btn-outline-primary" type="button" id="btn-search">
-										<i class="fa fa-search" aria-hidden="true"></i>
-										</button>
-									</div>
-
-								</div>
+							<form th:replace="fragments/search_form :: search_form">
 
 							</form>
 
 						</div>
-					
+
 						<div class="col-md-2"></div>
 
 					</div>
@@ -137,236 +52,23 @@
 
 		</main>
 
-		<footer class="container py-5">
+		<!-- Le footer -->
+		<footer th:replace="fragments/footer :: footer">
 			
-			<div class="row">
-				<div class="col-12 col-md">
-					<img src="images/logo.png" width="50"/>
-					<small class="d-block mb-3 text-muted">&copy; 2019</small>
-				</div>
-				<div class="col-6 col-md">
-					<h5>Navigation</h5>
-					<ul class="list-unstyled text-small">
-						<li><a class="text-muted" href="#">Accueil</a></li>
-						<li><a class="text-muted" href="#">Inscription</a></li>
-						<li><a class="text-muted" href="#">Connexion</a></li>
-						<li><a class="text-muted" href="#">DBPedia</a></li>
-						<li><a class="text-muted" href="#"></a></li>
-						<li><a class="text-muted" href="#"></a></li>
-					</ul>
-				</div>
-				<div class="col-6 col-md">
-					<h5>Ressources</h5>
-					<ul class="list-unstyled text-small">
-						<li><a class="text-muted" href="#">Ontologies</a></li>
-						<li><a class="text-muted" href="#">SPARQL</a></li>
-						<li><a class="text-muted" href="#">Autres ressources</a></li>
-						<li><a class="text-muted" href="#"></a></li>
-					</ul>
-				</div>
-				<div class="col-6 col-md">
-					<h5>Conditions d'utilisation</h5>
-					<ul class="list-unstyled text-small">
-						<li><a class="text-muted" href="#">Aide</a></li>
-						<li><a class="text-muted" href="#">Confidencialités</a></li>
-						<li><a class="text-muted" href="#">Recherche</a></li>
-						<li><a class="text-muted" href="#"></a></li>
-					</ul>
-				</div>
-				<div class="col-6 col-md">
-					<h5>A propos</h5>
-					<ul class="list-unstyled text-small">
-						<li><a class="text-muted" href="#">Equipe</a></li>
-						<li><a class="text-muted" href="#">UY1 - Informatique</a></li>
-						<li><a class="text-muted" href="#">Politique</a></li>
-						<li><a class="text-muted" href="#">Github</a></li>
-					</ul>
-				</div>
-			</div>
 		</footer>
 
-		<!-- Modal:  A ne pas effacer -->
-		<div id="modalZone">
-		</div>
 
-		<div id="Zone modale de connexion">
-
-			<!-- Modale d'inscription -->	
-			<div class="modal fade inscription-modale" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-
-				<form>
-
-				  <div class="modal-dialog modal-lg" role="document">
-					<div class="modal-content">
-					  <div class="modal-header">
-						<h5 class="modal-title center-block" id="exampleModalLabel">
-							<i class="fa fa-user-plus" aria-hidden="true"></i>
-							Inscrivez-vous
-						</h5>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						  <span aria-hidden="true">&times;</span>
-						</button>
-					  </div>
-					  <div class="modal-body">
-
-						  <div class="form-group">
-							<label></label> 
-							<div class="input-group">
-							  <div class="input-group-prepend">
-								<div class="input-group-text">
-								  <i class="fa fa-address-book"></i>
-								</div>
-							  </div> 
-							  <input id="nom" name="name" placeholder="Nom" type="text" aria-describedby="nomHelpBlock" required="required" class="form-control">
-							</div> 
-							<span id="nomHelpBlock" class="form-text text-muted">Entrez votre nom de famille</span>
-						  </div>
-						  <div class="form-group">
-							<label></label> 
-							<div class="input-group">
-							  <div class="input-group-prepend">
-								<div class="input-group-text">
-								  <i class="fa fa-address-book-o"></i>
-								</div>
-							  </div> 
-							  <input id="prenom" name="firstName" placeholder="Prénom" type="text" aria-describedby="prenomHelpBlock" class="form-control">
-							</div> 
-							<span id="prenomHelpBlock" class="form-text text-muted">Votre prénom</span>
-						  </div>
-						  <div class="form-group">
-							<label></label> 
-							<div class="input-group">
-							  <div class="input-group-prepend">
-								<div class="input-group-text">
-								  <i class="fa fa-at"></i>
-								</div>
-							  </div> 
-							  <input id="your_email" name="email" placeholder="Email" type="email" aria-describedby="emailHelpBlock" required="required" class="form-control">
-							</div> 
-							<span id="emailHelpBlock" class="form-text text-muted">Entrez une adresse email valide</span>
-						  </div>
-						  <div class="form-group">
-							<label></label>
-							<div class="input-group">
-							<div class="input-group-prepend">
-							  <div class="input-group-text">
-								<i class="fa fa-key"></i>
-							  </div>
-							</div> 
-							<input id="your_password" name="password" type="password" class="form-control" required="required">
-							</div>
-							<span id="emailHelpBlock" class="form-text text-muted">Choisissez un mot de passe</span>
-						  </div> 
-						  <div class="form-group">
-							<label></label> 
-							<div>
-							  <select id="profession" name="profession" aria-describedby="professionHelpBlock" required="required" class="custom-select">
-								<option value="visiteur">Visiteur</option>
-								<option value="medecin">Médecin</option>
-								<option value="infirmier">Infirmier</option>
-								<option value="etudiant">Etudiant</option>
-							  </select> 
-							  <span id="professionHelpBlock" class="form-text text-muted">Choisissez votre profession</span>
-							</div>
-						  </div>
-						  <div class="form-group">
-							<div>
-							  <div class="custom-control custom-radio custom-control-inline">
-								<input name="sexe" id="sexe_0" type="radio" class="custom-control-input" value="h" required="required" checked="checked" aria-describedby="sexeHelpBlock"> 
-								<label for="sexe_0" class="custom-control-label">Homme</label>
-							  </div>
-							  <div class="custom-control custom-radio custom-control-inline">
-								<input name="sexe" id="sexe_1" type="radio" class="custom-control-input" value="f" required="required" aria-describedby="sexeHelpBlock"> 
-								<label for="sexe_1" class="custom-control-label">Femme</label>
-							  </div> 
-							  <span id="sexeHelpBlock" class="form-text text-muted">Choisissez votre sexe</span>
-							</div>
-						  </div>
-						  <div class="form-group">
-							<div>
-							  <div class="custom-control custom-checkbox custom-control-inline">
-								<input name="checkbox" id="checkbox_0" type="checkbox" class="custom-control-input" value="confirmation"> 
-								<label for="checkbox_0" class="custom-control-label">Je confirme avoir lu et accepté les conditions d'utilisation</label>
-							  </div>
-							</div>
-						  </div> 
-						  <div class="form-group">
-						  </div>
-					  
-					  </div>
-					  <div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">Quitter</button>
-						<button name="submit" type="submit" class="btn btn-primary">M'inscrire</button>
-					  </div>
-					</div>
-				  </div>
-
-				</form>
-
-			</div>
-			
-			
-			<!-- Modale de connexion -->
-			<div class="modal fade connexion-modale" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-
-				<form>
-
-				  <div class="modal-dialog" role="document">
-					<div class="modal-content">
-					  <div class="modal-header">
-						<h5 class="modal-title center-block" id="exampleModalLabel">
-							<i class="fa fa-user-circle-o" aria-hidden="true"></i>
-							Connectez-vous !
-						</h5>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						  <span aria-hidden="true">&times;</span>
-						</button>
-					  </div>
-					  <div class="modal-body">
-						
-							<div class="form-group">
-							  <div class="input-group">
-								<div class="input-group-prepend">
-								  <div class="input-group-text">
-									<i class="fa fa-at"></i>
-								  </div>
-								</div> 
-								<input id="email" name="email" placeholder="Email" type="text" class="form-control" required="required">
-							  </div>
-							</div>
-						  
-						  <div class="form-group">
-							  <div class="input-group">
-								<div class="input-group-prepend">
-								  <div class="input-group-text">
-									<i class="fa fa-key"></i>
-								  </div>
-								</div> 
-								<input id="password" name="password" placeholder="Mot de passe" type="password" class="form-control" required="required">
-							  </div>
-							</div> 
-						  
-					  
-					  </div>
-					  <div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">Quitter</button>
-						<button type="submit" class="btn btn-primary">Se connecter</button>
-					  </div>
-					</div>
-				  </div>
-
-				</form>
-
-			</div>
+		<!-- Insertion des fenêtres modales  -->
+		<div th:replace="fragments/zone_modale :: zone_modale">
 
 		</div>
 
-		<script src="js/jquery-3.1.1.min.js"></script>
-		<script src="js/popper.min.js"></script>
-		<script src="js/bootstrap.min.js"></script>
-		<script src="js/jquery-ui.js"></script>
-		<script src="js/modal.js"></script>
-		<script src="js/main.js"></script>
-		<script src="js/accueil.js"></script>
+		<!-- Insertion des scripts -->
+		<div th:replace="fragments/scripts :: scripts(~{::script})">
+		
+			<script src="js/accueil.js"></script>
+
+		</div>
+		
 	</body>
 </html>
