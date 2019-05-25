@@ -1,0 +1,73 @@
+
+<!doctype html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+
+	<!-- Insertion du head -->
+	<head th:replace="fragments/header :: header(~{::title},~{})">
+
+		<title>Confidentialités & Politique d'utilisation - Episearch</title>
+
+	</head>
+
+	<body>
+
+		<!-- La barre de menu haute -->
+		<header th:replace="fragments/menu_top :: menu_top">
+
+		</header>
+
+		<!-- Le conteneur principale -->
+		<main role="main">
+			
+			<h1 class="text-center">Confidentialités & Politique d'utilisation</h1>
+			
+			<div class="album py-5 bg-light">
+
+				<div class="container">
+
+					<div class="row">
+
+						<div class="col-md-3">
+							<span class="text-muted">Menu</span>
+							<ul class="list">
+								<li>Conservation des données</li>
+								<li>Pourquoi créer un compte</li>
+								<li>Mes données sont-elles vulnérables</li>
+							</ul>
+						</div>
+
+						<div class="col-md-9">
+							<div class="item">
+								<h3>Conservation des données</h3>
+								<p>
+								Episearch protège l'ensemble de vos données privées
+								</p>
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</main>
+
+		<!-- Le footer -->
+		<footer th:replace="fragments/footer :: footer">
+
+		</footer>
+
+		<!-- Insertion des fenêtres modales  -->
+		<div th:replace="fragments/zone_modale :: zone_modale">
+
+		</div>
+
+		<!-- Insertion des scripts -->
+		<div th:replace="fragments/scripts :: scripts(~{})">
+		
+		</div>
+		
+	</body>
+
+</html>
