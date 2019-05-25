@@ -1,0 +1,31 @@
+
+	<!-- Fragment d'entête -->
+	<head th:fragment="header(title, links)">
+
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="Moteur de recherche sémantique pour Epicam">
+		<meta name="author" content="Jerome Dh, Serges, Cyrille, Patrick">
+		<meta name="generator" content="Jekyll v3.8.5">
+
+		<!-- Icone-->
+		<link rel="icon" href="images/logo.png" type="image/png" sizes="16x16">
+
+		<link rel="manifest" href="/manifest.json">
+		
+		<title th:replace="${title}">Moteur de recherche sémantique</title>
+
+		<!-- Bootstrap core CSS -->
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+
+		<!-- <link href="css/font-awesome.min.css" rel="stylesheet"> -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+		<!-- <link href="css/bootstrap-theme.min.css" rel="stylesheet"> -->
+		<link href="css/jquery-ui.css" rel="stylesheet">
+		<link href="css/main.css" rel="stylesheet">
+
+		<!-- Block de link additionel -->
+		<th:block th:replace="${links}" />
+
+	</head>
