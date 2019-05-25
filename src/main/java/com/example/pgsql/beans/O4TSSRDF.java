@@ -30,13 +30,16 @@ public class O4TSSRDF extends BaseOnto
 	 * Faire une Full search
 	 *
 	 */
-	public JSONResponse fullQuery(JSONResponse jsonResponse, String term)
+	public List<Disease> fullQuery(String term)
 	{
 		term = construireRegex(term);
-		System.out.println("+\nLe term: " + term + "\n");
+		/* System.out.println("+\nLe term: " + term + "\n"); */
 
 		OntModel m = getModel("O4TSSRDF.owl");
-        jsonResponse = showFullQuery(jsonResponse, m,
+
+		List<Disease> response;
+
+        response = showFullQuery(m,
                    getPrefix() +
                    "select distinct ?classe ?label ?comment ?genre ?lienWiki" +
 				   "	where " +
@@ -60,19 +63,22 @@ public class O4TSSRDF extends BaseOnto
 						"} " +
 						"LIMIT 20");
 
-		return jsonResponse;
-		
+		return response;
+
     }
 	
 	/**
 	 * Faire une recherche des titres pour l'autocompletion
 	 */
-	public List<AutoComplete> autoCompleteQuery(List<AutoComplete> list, String term)
+	public List<AutoComplete> autoCompleteQuery(String term)
 	{
 		term = construireRegex(term);
 
 		OntModel m = getModel("O4TSSRDF.owl");
-        list = showAutoCompleteQuery(list, m,
+		
+		List<AutoComplete> list;
+
+        list = showAutoCompleteQuery(m,
                    getPrefix() +
                    "select distinct ?label ?genre" +
 				   "	where " +
