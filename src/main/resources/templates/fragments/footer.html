@@ -13,8 +13,9 @@
 					<h5>Navigation</h5>
 					<ul class="list-unstyled text-small">
 						<li><a class="text-muted" href="/">Accueil</a></li>
-						<li><a class="text-muted" href="#" data-toggle="modal" data-target=".inscription-modale">Inscription</a></li>
-						<li><a class="text-muted" href="#" data-toggle="modal" data-target=".connexion-modale">Connexion</a></li>
+						<li th:if="${session.user == null}"><a class="text-muted" href="/inscription" th:href="@{/inscription}">Inscription</a></li>
+						<li th:if="${session.user == null}"><a class="text-muted" href="#" data-toggle="modal" data-target=".connexion-modale">Connexion</a></li>
+						<li th:unless="${session.user == null}"><a class="text-muted" href="/account" th:href="@{/account}">Mon compte</a></li>
 						<li><a class="text-muted" href="http://fr.dbpedia.org/" target="_blank">DBPedia</a></li>
 					</ul>
 				</div>
