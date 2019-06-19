@@ -1,7 +1,7 @@
 package com.example.pgsql.beans;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+// import org.slf4j.Logger;
+// import org.slf4j.LoggerFactory;
 
 import org.apache.jena.ontology.OntClass;
 import org.apache.jena.ontology.OntModel;
@@ -25,6 +25,15 @@ import java.util.ArrayList;
  
 public class O4TSSRDF extends BaseOnto
 {
+	/**
+	 * @return string
+	 */
+	private static final String FILE_NAME = "O4TSSRDF.owl";
+	
+	public O4TSSRDF()
+	{
+		super(FILE_NAME);
+	}
 
    	/**
 	 * Faire une Full search
@@ -35,12 +44,9 @@ public class O4TSSRDF extends BaseOnto
 		term = construireRegex(term);
 		/* System.out.println("+\nLe term: " + term + "\n"); */
 
-		OntModel m = getModel("O4TSSRDF.owl");
-
 		List<Disease> response;
 
-        response = showFullQuery(m,
-                   getPrefix() +
+        response = showFullQuery(
                    "select distinct ?classe ?label ?comment ?genre ?lienWiki" +
 				   "	where " +
 						"{ " +
@@ -66,7 +72,7 @@ public class O4TSSRDF extends BaseOnto
 		return response;
 
     }
-	
+
 	/**
 	 * Faire une recherche des titres pour l'autocompletion
 	 */
@@ -74,12 +80,9 @@ public class O4TSSRDF extends BaseOnto
 	{
 		term = construireRegex(term);
 
-		OntModel m = getModel("O4TSSRDF.owl");
-		
 		List<AutoComplete> list;
 
-        list = showAutoCompleteQuery(m,
-                   getPrefix() +
+        list = showAutoCompleteQuery(
                    "select distinct ?label ?genre" +
 				   "	where " +
 						"{ " +
