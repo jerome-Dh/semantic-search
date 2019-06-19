@@ -11,6 +11,7 @@ import org.apache.jena.vocabulary.DC ;
 import org.apache.jena.util.FileManager;
 
 import com.example.pgsql.beans.*;
+import com.example.pgsql.model.Users;
 
 
 /**
@@ -19,6 +20,9 @@ import com.example.pgsql.beans.*;
  */
 public class SPARQLRepository
 {
+	/**
+	 * Constructor
+	 */
 	public SPARQLRepository()
 	{
 
@@ -62,6 +66,17 @@ public class SPARQLRepository
 
 		return jsonResponse;
 
+	}
+	
+	/**
+	 * Authentifier un user
+	 */
+	public Users getUser(String login, String password)
+	{
+		O4UPRDF o4TSS = new O4UPRDF();
+		Users user = o4TSS.getUser(login, password);
+
+		return user;
 	}
 
 }
