@@ -23,6 +23,10 @@ public class PgsqlApplication {
 		SpringApplication.run(PgsqlApplication.class, args);
 	}
 
+	/**
+	 * Auto-Remplissage de la BD pour test
+	 *
+	 */
 	@Bean
 	public CommandLineRunner demo(UserRepository repository) {
 		return (args) -> {
