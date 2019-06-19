@@ -1,9 +1,9 @@
 
-<!doctype html>
-<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<!Doctype html>
+<html th:replace="~{fragments/template :: layout(~{::title}, ~{}, ~{::main}, ~{})}">
 
 	<!-- Insertion du head -->
-	<head th:replace="fragments/header :: header(~{::title},~{})">
+	<head>
 
 		<title>Aide - Episearch</title>
 
@@ -11,15 +11,10 @@
 
 	<body>
 
-		<!-- La barre de menu haute -->
-		<header th:replace="fragments/menu_top :: menu_top">
-
-		</header>
-
 		<!-- Le conteneur principale -->
 		<main role="main">
 
-			<h1 class="text-center">Page d'aide</h1>
+			<h1 class="text-center beautiful">Page d'aide</h1>
 
 			<div class="album py-5 bg-light">
 
@@ -55,21 +50,7 @@
 
 		</main>
 
-		<!-- Le footer -->
-		<footer th:replace="fragments/footer :: footer">
-
-		</footer>
-
-		<!-- Insertion des fenêtres modales  -->
-		<div th:replace="fragments/zone_modale :: zone_modale">
-
-		</div>
-
-		<!-- Insertion des scripts -->
-		<div th:replace="fragments/scripts :: scripts(~{})">
-		
-		</div>
-		
 	</body>
 
 </html>
+
