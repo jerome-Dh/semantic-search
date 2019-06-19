@@ -18,13 +18,21 @@ import java.util.StringTokenizer;
 import java.util.List;
 import java.util.ArrayList;
 
+import com.example.pgsql.model.Users;
+
 
 public class BaseOnto {
 
-	// Répertoire des données rdf, owl, ..
+	/**
+	 * Répertoire des données rdf, owl, ..
+	 * @return String 
+	 */
     public static final String SOURCE = "./data/";
 
-    // les namespaces des ontologies
+    /**
+	 * les namespaces des ontologies
+	 * @return String
+	 */
     public static final String PIZZA_NS = "http://www.co-ode.org/ontologies/pizza/pizza.owl#";
 	public static final String BFO_NS = "http://www.ifomis.org/bfo/1.1#";
     public static final String OWL_NS = "http://www.w3.org/2002/07/owl#";
@@ -43,6 +51,20 @@ public class BaseOnto {
     public static final String RDF_NS = "http://www.w3.org/1999/02/22-rdf-syntax-ns#";
     public static final String OBOINOWL_NS = "http://www.geneontology.org/formats/oboInOwl#";
     public static final String UBIS_NS = "http://ubisworld.org/documents/ubis.rdf#";
+
+	
+	/**
+	 * @return OntModel
+	 */
+	private OntModel ontModel = null;
+	
+	/**
+	 * Constructor
+	 */
+	public BaseOnto(String fileName)
+	{
+		ontModel = getModel(fileName);
+	}
 
 	// Les préfixes des réquêtes
 	protected String getPrefix()
@@ -79,12 +101,12 @@ public class BaseOnto {
 	/**
 	 * Afficher le résultat de l'autocompletion
 	 */
-	protected List<AutoComplete> showAutoCompleteQuery( Model m, String q ) 
+	protected List<AutoComplete> showAutoCompleteQuery( String q ) 
 	{
 		List<AutoComplete> list = new ArrayList<AutoComplete>();
 
-		Query query = QueryFactory.create( q );
-        QueryExecution qexec = QueryExecutionFactory.create( query, m );
+		Query query = QueryFactory.create( getPrefix() + q );
+        QueryExecution qexec = QueryExecutionFactory.create( query, ontModel );
         
 		try 
 		{
@@ -124,12 +146,12 @@ public class BaseOnto {
 	/**
 	 * Afficher le résultat FullQuery
 	 */
-	protected List<Disease> showFullQuery( Model m, String q ) 
+	protected List<Disease> showFullQuery( String q ) 
 	{
 		List<Disease> diseases = new ArrayList<Disease>();
 
-		Query query = QueryFactory.create( q );
-        QueryExecution qexec = QueryExecutionFactory.create( query, m );
+		Query query = QueryFactory.create( getPrefix() + q );
+        QueryExecution qexec = QueryExecutionFactory.create( query, ontModel );
 
 		try 
 		{
@@ -173,6 +195,42 @@ public class BaseOnto {
     }
 	
 	/**
+	 * Retourner les infos sur un user
+	 */
+	public Users getUniqueUser(String q)
+	{
+		Users user = null;
+
+		Query query = QueryFactory.create( getPrefix() + q );
+
+		QueryExecution qexec = QueryExecutionFactory.create( query, ontModel );
+
+		try 
+		{
+            ResultSet results = qexec.execSelect();
+
+			if(results.hasNext())
+			{
+				QuerySolution soln = results.nextSolution();
+
+				String label = getLiteral(soln, "label");
+				String identifier = getLiteral(soln, "identifier");
+				String category = getLiteral(soln, "category");
+
+				user = new Users(label, "", "", identifier, category, "");
+
+			}
+        }
+        finally {
+            qexec.close();
+        }
+
+		return user;
+
+	}
+
+
+	/**
 	 * Obtenir un donnée littérale dans un résultat de réquête
 	 */
 	protected String getLiteral(QuerySolution soln, String champs)
@@ -186,17 +244,17 @@ public class BaseOnto {
 		String ret = "";
 		if ( rdfNode.isLiteral() )
 		{
-			ret = ((Literal)rdfNode).getLexicalForm() ;
+			ret = ((Literal)rdfNode).getLexicalForm().trim();
 		}
 		if ( rdfNode.isResource() )
 		{
 			Resource r = (Resource)rdfNode ;
 			if ( ! r.isAnon() )
 			{
-				ret = r.getURI();
+				ret = r.getURI().trim();
 			}
 		}
-		
+
 		return ret;
 
 	}
