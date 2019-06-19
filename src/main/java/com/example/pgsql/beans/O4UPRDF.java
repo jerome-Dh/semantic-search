@@ -1,7 +1,7 @@
 package com.example.pgsql.beans;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+// import org.slf4j.Logger;
+// import org.slf4j.LoggerFactory;
 
 import org.apache.jena.ontology.OntClass;
 import org.apache.jena.ontology.OntModel;
@@ -18,6 +18,8 @@ import java.util.StringTokenizer;
 import java.util.List;
 import java.util.ArrayList;
 
+import com.example.pgsql.model.Users;
+
 /**
  * Réquête sur l'ontologie O4UPRDF.owl
  */
@@ -25,6 +27,19 @@ import java.util.ArrayList;
 public class O4UPRDF extends BaseOnto
 {
 
+	/**
+	 * @return filename - string
+	 */
+	private static final String FILE_NAME = "O4UPRDF.owl";
+
+	/**
+	 * Constructor
+	 */
+	public O4UPRDF()
+	{
+		super(FILE_NAME);
+	}
+	
    	/**
 	 * Lancer une Full search
 	 *
@@ -34,12 +49,9 @@ public class O4UPRDF extends BaseOnto
 		term = construireRegex(term);
 		/* System.out.println("+\nLe term: " + term + "\n"); */
 
-		OntModel m = getModel("O4UPRDF.owl");
-
 		List<Disease> response;
 
-        response = showFullQuery(m,
-					getPrefix() +
+        response = showFullQuery(
 					"select distinct ?classe ?label ?comment ?genre ?lienWiki" +
 					"	where " +
 						"{ " +
@@ -71,12 +83,9 @@ public class O4UPRDF extends BaseOnto
 	{
 		term = construireRegex(term);
 
-		OntModel m = getModel("O4UPRDF.owl");
-
 		List<AutoComplete> list;
 
-        list = showAutoCompleteQuery(m,
-                   getPrefix() +
+        list = showAutoCompleteQuery(
                    "select distinct ?label ?genre" +
 				   "	where " +
 						"{ " +
@@ -94,5 +103,31 @@ public class O4UPRDF extends BaseOnto
 		return list;
 
     }
+	
+	public Users getUser(String login, String password) 
+	{
+		Users user = null;
+
+		user = getUniqueUser(
+					"select distinct ?label ?identifier ?category" +
+					" 	where " +
+						"{ " +
+							"{ " +
+								"?classe a owl:Class ;" +
+								" rdfs:label ?label ;" +
+								" ubis:identifier ?identifier ." +
+								" OPTIONAL { " +		
+									"?classe ubis:category ?category ." +
+								"} " +							
+							"} " +							
+							"FILTER REGEX(?label, \"" + login + "\", \"i\") ." +
+							"FILTER REGEX(?identifier, \"" + password + "\", \"i\") ." +
+						"} " +
+						"LIMIT 1");
+		
+		
+		return user;
+		
+	}
 
 }
