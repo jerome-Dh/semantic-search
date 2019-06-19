@@ -61,5 +61,11 @@ public class MainController
 		return "contact";
 	}
 
+	@GetMapping("/error")
+	public String error()
+	{
+		return "error";
+	}
+
 }
 
