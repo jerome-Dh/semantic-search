@@ -38,6 +38,14 @@ a {
 		font-size: 3.5rem;
 	}
 }
+.beautiful {
+	font-family: beautiful;
+	font-weight: bold;
+	color: rgb(133,96,168)!important;
+	letter-spacing: 5px;
+	margin-bottom: 20px;
+}
+
 body > main {
 
 	margin-top: 100px;
@@ -55,23 +63,27 @@ footer a{
 	color: green;
 }
 #result {
-	min-height:200px;
+	min-height: 200px;
 }
 #choixCible > button {
 	min-width: 120px;
 } 
 
 #search {
-	height:50px; 
-	font-weight:light; 
-	font-size:20px;
+	height: 50px; 
+	font-weight: light; 
+	font-size: 20px;
 }
 	
 .some-error .red{
 	color: #f00;
-	font-size:20px;
+	font-size: 20px;
 }	
 .some-error, .loader {
-	height:50px; 
-	font-weight:light; 
-} 
+	height: 50px; 
+	font-weight: light; 
+}
+.form-group [type=text], .form-group [type=password],
+.form-group [type=email], .form-group select {
+	font-size: 20px;
+}
