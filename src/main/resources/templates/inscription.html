@@ -1,0 +1,52 @@
+
+<!Doctype html>
+<html th:replace="~{fragments/template :: layout(~{::title}, ~{}, ~{::main}, ~{})}">
+
+	<!-- Insertion du head -->
+	<head>
+
+		<title>Inscription - Episearch</title>
+
+	</head>
+
+	<body>
+
+		<!-- Le conteneur principale -->
+		<main role="main">
+
+			<h1 class="text-center beautiful">Inscription</h1>
+
+			<div class="album py-5 bg-light">
+
+				<div class="container">
+
+					<div class="row">
+
+						<div class="col-md-3"></div>
+
+						<div class="col-md-6">
+
+							<div class="item" id="account">
+
+								<h3>Mes informations</h3>
+
+								<!-- Insertion des fenêtres modales  -->
+								<div th:replace="fragments/form_inscription :: form_inscription ('/user')"></div>
+
+							</div>
+							
+							<div class="col-md-3"></div>
+	
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</main>
+
+	</body>
+
+</html>
