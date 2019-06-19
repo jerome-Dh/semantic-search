@@ -1,21 +1,68 @@
 
 <!DOCTYPE html>
+<html th:fragment="layout (title, links, content, scripts)"
+	lang="fr" xmlns:th="http://www.thymeleaf.org">
 
-<html th:fragment="layout (title, content)" xmlns:th="http://www.thymeleaf.org">
-
+	<!-- Insertion du head -->
 	<head>
-		<title th:replace="${title}">Layout Title</title>
+
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="Moteur de recherche sémantique pour Epicam">
+		<meta name="author" content="Jerome Dh, Serges, Cyrille, Patrick">
+		<meta name="generator" content="Jekyll v3.8.5">
+
+		<!-- Icone-->
+		<link rel="icon" href="images/logo.png" type="image/png" sizes="16x16">
+
+		<link rel="manifest" href="/manifest.json">
+
+		<!-- Bootstrap core CSS -->
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+
+		<!-- <link href="css/font-awesome.min.css" rel="stylesheet"> -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+		<!-- <link href="css/bootstrap-theme.min.css" rel="stylesheet"> -->
+		<link href="css/jquery-ui.css" rel="stylesheet">
+		<link href="css/main.css" rel="stylesheet">
+
+		<!-- Block de link additionel -->
+		<th:block th:replace="${links}" />
+
+		<title th:replace="${title}">Moteur de recherche sémantique sur Epicam & DBPedia</title>
+
 	</head>
+
 	<body>
-		<h1>Layout H1</h1>
-		
-		<div th:replace="${content}">
-			<p>Layout content</p>
-		</div>
-	
-		<footer>
-			Layout footer
-		</footer>
-		
+
+		<!-- La barre de menu haute -->
+		<header th:replace="fragments/menu_top :: menu_top"></header>
+
+
+		<!-- Le conteneur principale -->
+		<main role="main" th:replace="${content}"></main>
+
+
+		<!-- Le footer -->
+		<footer th:replace="fragments/footer :: footer"></footer>
+
+
+		<!-- Insertion des fenêtres modales  -->
+		<div th:replace="fragments/zone_modale :: zone_modale"></div>
+
+
+		<!-- Insertion des scripts -->
+		<script src="js/jquery-3.1.1.min.js"></script>
+		<script src="js/popper.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/jquery-ui.js"></script>
+		<script src="js/modal.js"></script>
+		<script src="js/main.js"></script>
+		<script src="js/users.js"></script>
+
+		<th:block th:replace="${scripts}" />
+
 	</body>
+
 </html>
