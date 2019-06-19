@@ -1,11 +1,11 @@
 
-<!doctype html>
-<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<!Doctype html>
+<html th:replace="~{fragments/template :: layout(~{::title}, ~{::link}, ~{::main}, ~{::script})}">
 
 	<!-- Insertion du head -->
-	<head th:replace="fragments/header :: header(~{::title},~{::link})">
+	<head>
 
-		<title>Moteur de recherche sémantique sur Epicam & DBPedia</title>
+		<title>Accueil - Moteur de recherche sémantique sur Epicam & DBPedia</title>
 
 		<link href="css/accueil.css" rel="stylesheet">
 
@@ -13,16 +13,11 @@
 
 	<body>
 
-		<!-- La barre de menu haute -->
-		<header th:replace="fragments/menu_top :: menu_top">
-
-		</header>
-
 		<!-- Le conteneur principale -->
 		<main role="main">
 
 			<div id="title-search">
-				<h1 class="text-center">EpiSearch</h1>
+				<h1 class="text-center beautiful">EpiSearch</h1>
 			</div>
 
 			<div class="album py-5 bg-light">
@@ -52,23 +47,8 @@
 
 		</main>
 
-		<!-- Le footer -->
-		<footer th:replace="fragments/footer :: footer">
-			
-		</footer>
+		<script src="js/accueil.js"></script>
 
-
-		<!-- Insertion des fenêtres modales  -->
-		<div th:replace="fragments/zone_modale :: zone_modale">
-
-		</div>
-
-		<!-- Insertion des scripts -->
-		<div th:replace="fragments/scripts :: scripts(~{::script})">
-		
-			<script src="js/accueil.js"></script>
-
-		</div>
-		
 	</body>
+
 </html>
