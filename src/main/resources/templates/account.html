@@ -1,0 +1,113 @@
+
+<!Doctype html>
+<html th:replace="~{fragments/template :: layout(~{::title}, ~{}, ~{::main}, ~{::script})}">
+
+	<!-- Insertion du head -->
+	<head>
+
+		<title>Mon compte - Episearch</title>
+
+	</head>
+
+	<body>
+
+		<!-- Le conteneur principale -->
+		<main role="main">
+
+			<h1 class="text-center beautiful">Mon compte</h1>
+
+			<div class="album py-5 bg-light">
+
+				<div class="container">
+
+					<div class="row">
+
+						<div class="col-md-3">
+							<span class="text-muted">Menu</span>
+							<ul class="list list-unstyled">
+								<li><a href="#account" class="link link-primary">Mon compte</a></li>
+								<li><a href="#preferences" class="link link-primary">Mes préférences</a></li>
+								<li>
+									<form action="account" method="POST" id="form_delete_account">
+
+										<button type="submit" class="btn btn-warning">
+											Supprimer mon compte
+										</button>
+
+									</form>
+								</li>
+							</ul>
+						</div>
+
+						<div class="col-md-9">
+
+							<div class="item" id="account">
+
+								<h3>Mes informations</h3>
+
+								<!-- Insertion des fenêtres modales  -->
+								<div th:replace="fragments/form_inscription :: form_inscription ('/update')"></div>
+
+							</div>
+
+							<hr/><hr/>
+
+							<div class="item" id="preferences">
+
+								<h3>Mes Préférences</h3>
+
+								<form action="account" method="POST">
+
+									<div class="form-group">
+										<div class="custom-control custom-checkbox custom-control-inline">
+											<input name="stay_connect" id="checkbox_1" type="checkbox" class="custom-control-input" value="stay_connect"> 
+											<label for="checkbox_1" class="custom-control-label">
+											Rester connecté
+											</label>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<div class="custom-control custom-checkbox custom-control-inline">
+											<input name="use_pref" id="checkbox_2" type="checkbox" class="custom-control-input" value="use_pref"> 
+											<label for="checkbox_2" class="custom-control-label">
+											Utiliser mes préférences lors des recherches
+											</label>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<div class="custom-control custom-checkbox custom-control-inline">
+											<input name="authorize_multi_connections" id="checkbox_3" type="checkbox" class="custom-control-input" value="authorize_multi_connections"> 
+											<label for="checkbox_3" class="custom-control-label">
+											Autoriser les connexions multiples
+											</label>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<button type="button" class="btn btn-secondary" data-dismiss="modal">Quitter</button>
+										<button name="submit" type="submit" class="btn btn-primary">Valider</button>
+									</div>
+
+								</form>
+
+							</div>
+							
+							<hr/><hr/>
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</main>
+
+		<script src="js/account.js"></script>
+
+	</body>
+
+</html>
