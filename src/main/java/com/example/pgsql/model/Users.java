@@ -119,7 +119,7 @@ public class Users {
 	
 	public String toString()
 	{
-		return name + " ; " + firstName + " ; " + email;
+		return name + " ; " + firstName + " ; " + email + " ; " + sexe + " ; " + profession;
 	}
 
 }
