@@ -1,0 +1,118 @@
+<!-- Fragment de la zone modale -->
+<div th:fragment="form_inscription (action)">
+
+	<form action="#" th:action="${action}" th:object="${session.user}" method="POST" id="form_inscription">
+
+		  <div class="form-group">
+			<label></label> 
+			<div class="input-group">
+			  <div class="input-group-prepend">
+				<div class="input-group-text">
+				  <i class="fa fa-address-book"></i>
+				</div>
+			  </div> 
+			  <input id="name" name="name" placeholder="Nom" type="text"
+				th:value="${session.user} ? ${session.user.name} : ''"
+			  aria-describedby="nomHelpBlock" required="required" class="form-control">
+			</div> 
+			<span id="nomHelpBlock" class="form-text text-muted">Entrez votre nom de famille</span>
+		  </div>
+
+		  <div class="form-group">
+			<label></label> 
+			<div class="input-group">
+			  <div class="input-group-prepend">
+				<div class="input-group-text">
+				  <i class="fa fa-address-book-o"></i>
+				</div>
+			  </div> 
+			  <input id="firstName" name="firstName" placeholder="Prénom" 
+			  th:value="${session.user} ? ${session.user.firstName} : ''"
+			  type="text" aria-describedby="prenomHelpBlock" class="form-control">
+			</div> 
+			<span id="prenomHelpBlock" class="form-text text-muted">Votre prénom</span>
+		  </div>
+
+		  <div class="form-group">
+			<label></label> 
+			<div class="input-group">
+			  <div class="input-group-prepend">
+				<div class="input-group-text">
+				  <i class="fa fa-at"></i>
+				</div>
+			  </div> 
+			  <input id="your_email" name="email" placeholder="Email" type="email"
+				th:value="${session.user} ? ${session.user.email} : ''"
+				aria-describedby="emailHelpBlock" required="required" class="form-control">
+			</div>
+			<span id="emailHelpBlock" class="form-text text-muted">Entrez une adresse email valide</span>
+		  </div>
+
+		  <div class="form-group">
+			<label></label>
+			<div class="input-group">
+			<div class="input-group-prepend">
+			  <div class="input-group-text">
+				<i class="fa fa-key"></i>
+			  </div>
+			</div> 
+			<input id="your_password" name="password" type="password" class="form-control" 
+			aria-describedby="emailHelpBlock" required="required">
+			</div>
+			<span id="passwordHelpBlock" class="form-text text-muted">Choisissez un mot de passe</span>
+		  </div> 
+
+		  <div class="form-group">
+			<label></label> 
+			<div>
+			  <select id="profession" name="profession" aria-describedby="professionHelpBlock" required="required" class="custom-select">
+				<option value="visiteur" 
+				th:selected="${session.user} ? (${session.user.profession == 'visiteur'} ? true : false): false">Visiteur</option>
+				<option value="medecin"
+				th:selected="${session.user} ? (${session.user.profession == 'medecin'} ? true : false): false">Médecin</option>
+				<option value="infirmier"
+				th:selected="${session.user} ? (${session.user.profession == 'infirmier'} ? true : false): false">Infirmier</option>
+				<option value="etudiant"
+				th:selected="${session.user} ? (${session.user.profession == 'etudiant'} ? true : false): false">Etudiant</option>
+			  </select>
+			  <span id="professionHelpBlock" class="form-text text-muted">Choisissez votre profession</span>
+			</div>
+		  </div>
+
+		  <div class="form-group">
+			<div>
+			  <div class="custom-control custom-radio custom-control-inline">
+				<input name="sexe" id="sexe_0" type="radio" class="custom-control-input" 
+				th:checked="${session.user} ? (${session.user.sexe == 'h'} ? true : false): false"
+				value="h" required="required" checked="checked" aria-describedby="sexeHelpBlock"> 
+				<label for="sexe_0" class="custom-control-label">Homme</label>
+			  </div>
+			  <div class="custom-control custom-radio custom-control-inline">
+				<input name="sexe" id="sexe_1" type="radio" class="custom-control-input" 
+				th:checked="${session.user} ? (${session.user.sexe == 'f'} ? true : false): false"
+				value="f" required="required" aria-describedby="sexeHelpBlock"> 
+				<label for="sexe_1" class="custom-control-label">Femme</label>
+			  </div> 
+			  <span id="sexeHelpBlock" class="form-text text-muted">Choisissez votre sexe</span>
+			</div>
+		  </div>
+
+		  <div class="form-group">
+			<div>
+			  <div class="custom-control custom-checkbox custom-control-inline">
+				<input name="checkbox" id="checkbox_0" type="checkbox" class="custom-control-input" 
+				th:checked="${session.user}"
+				value="confirmation" required="required"> 
+				<label for="checkbox_0" class="custom-control-label">Je confirme avoir lu et accepté les conditions d'utilisation</label>
+			  </div>
+			</div>
+		  </div>
+
+	  <div class="form-group">
+		<a href="#" th:href="@{/}" type="button" class="btn btn-secondary">Quitter</a>
+		<button name="submit" type="submit" class="btn btn-primary">Valider</button>
+	  </div>
+
+	</form>
+
+</div>
