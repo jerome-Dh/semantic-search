@@ -16,6 +16,5 @@
   "start_url": "/",
   "background_color": "#f1f1f1",
   "display": "standalone",
-  "scope": "/serp/",
   "theme_color": "#f1f1f1"
 }
