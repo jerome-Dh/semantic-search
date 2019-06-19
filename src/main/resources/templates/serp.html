@@ -1,21 +1,17 @@
 
-<!doctype html>
-<html lang="fr">
+<!Doctype html>
+<html th:replace="~{fragments/template :: layout(~{::title}, ~{}, ~{::main}, ~{::script})}">
 
 	<!-- Insertion du head -->
-	<head th:replace="fragments/header :: header(~{::title},~{})">
+	<head>
 
-		<title>Résultats - Moteur de recherche sémantique</title>
+		<title>Résultats - Episearch</title>
 
 	</head>
-	
+
 	<body>
-		
-		<!-- La barre de menu haute -->
-		<header th:replace="fragments/menu_top :: menu_top">
 
-		</header>
-
+		<!-- Le conteneur principale -->
 		<main role="main">
 
 			<div id="zone-recherche" class="container">
@@ -30,25 +26,24 @@
 						</form>
 
 					</div>
-					<div class="col-md-3" id="search_time">
-					
-					</div>
+
+					<div class="col-md-3" id="search_time"></div>
+
 				</div>
+
 			</div>
 
 			<div class="album py-5 bg-light">
-			
+
 				<div class="container">
 
 				  <div class="row">
-					
+
 					<!-- Zone d'affichage des résultats -->
-					<div class="col-md-8" id="result">
-					</div>
+					<div class="col-md-8" id="result"></div>
 
 					<!-- Zone d'affichage de l'extrait -->
-					<div class="col-md-4" id="pancard-droite">
-					</div>
+					<div class="col-md-4" id="pancard-droite"></div>
 
 				  </div>
 
@@ -56,28 +51,13 @@
 
 			</div>
 
+			<!-- Modal:  A ne pas effacer -->
+			<div id="modalZone"></div>
+
 		</main>
 
-		<!-- Le footer -->
-		<footer th:replace="fragments/footer :: footer">
-
-		</footer>
-
-		<!-- Modal:  A ne pas effacer -->
-		<div id="modalZone">
-		</div>
-
-		<!-- Insertion des fenêtres modales  -->
-		<div th:replace="fragments/zone_modale :: zone_modale">
-
-		</div>
-
-		<!-- Insertion des scripts -->
-		<div th:replace="fragments/scripts :: scripts(~{::script})">
-
-			<script src="js/dbpedia.js"></script>
-
-		</div>
+		<script src="js/dbpedia.js"></script>
 
 	</body>
+
 </html>
