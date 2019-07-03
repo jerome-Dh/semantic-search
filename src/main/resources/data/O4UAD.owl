@@ -1,0 +1,241 @@
+<?xml version="1.0"?>
+<!DOCTYPE rdf:RDF [
+  <!ENTITY this 'http://gumo.org/2.0/'>
+  <!ENTITY gumo 'http://gumo.org/2.0/#'>
+  <!ENTITY ubis 'http://ubisworld.org/documents/ubis.rdf#'>
+  <!ENTITY owl 'http://www.w3.org/2002/07/owl#'>
+  <!ENTITY xsd 'http://www.w3.org/2001/XMLSchema#'>
+  <!ENTITY rdfs 'http://www.w3.org/2000/01/rdf-schema#'>
+  <!ENTITY ubisontology 'http://ubisworld.org/documents/ontology/#'>
+  <!ENTITY rdf 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+  <!ENTITY pref 'http://uy1/m1/groupe22#'>
+  <!ENTITY dcterms 'http://purl.org/dc/terms/'>
+  <!ENTITY ubisworld 'http://ubisworld.org/show.php?'>
+  <!ENTITY dc 'http://purl.org/dc/elements/1.1/'>]>
+<rdf:RDF
+    xmlns:rdf="&rdf;"
+    xmlns="&this;"
+    xmlns:ubisworld="&ubisworld;"
+    xmlns:rdfs="&rdfs;"
+    xmlns:j.0="&pref;"
+    xmlns:dcterms="&dcterms;"
+    xmlns:dc="&dc;"
+    xmlns:pref="&pref;"
+    xmlns:ubisontology="&ubisontology;"
+    xmlns:owl="&owl;"
+    xmlns:gumo="&gumo;"
+    xmlns:ubis="&ubis;"
+    xmlns:xsd="&xsd;">
+  <owl:Ontology rdf:about="&this;">
+    <dc:title></dc:title>
+    <rdfs:comment></rdfs:comment>
+    <rdfs:comment>Relation entre un user et ses préférences</rdfs:comment>
+    <dc:date>25.06.2019</dc:date>
+    <dc:creator>Groupe 22 - UY1</dc:creator>
+    <owl:versionInfo rdf:datatype="&xsd;decimal">1.0</owl:versionInfo>
+  </owl:Ontology>
+  <owl:Class rdf:about="&pref;Desease"/>
+  <owl:Class rdf:about="&pref;Pref2">
+    <j.0:deseaseType rdf:resource="&pref;Cancer"/>
+    <j.0:person rdf:resource="&pref;LoicKevin"/>
+  </owl:Class>
+  <owl:Class rdf:about="&pref;Pref50">
+    <j.0:deseaseType rdf:resource="&pref;Respiratoire"/>
+    <j.0:person rdf:resource="&pref;MbangAlainRomeo"/>
+  </owl:Class>
+  <owl:Class rdf:about="&pref;Pref30">
+    <j.0:deseaseType rdf:resource="&pref;Cardiovasculaire"/>
+    <j.0:person rdf:resource="&pref;NinonGenevieve"/>
+  </owl:Class>
+  <owl:Class rdf:about="&pref;Pref6">
+    <j.0:deseaseType rdf:resource="&pref;Contagieuse"/>
+    <j.0:person rdf:resource="&pref;SorelleVeroniqueTchakounte"/>
+  </owl:Class>
+  <owl:Class rdf:about="&pref;Pref10">
+    <j.0:deseaseType rdf:resource="&pref;Contagieuse"/>
+    <j.0:person rdf:resource="&pref;NtoloVeranePhilomene"/>
+  </owl:Class>
+  <owl:Class rdf:about="&pref;Pref42">
+    <j.0:deseaseType rdf:resource="&pref;Contagieuse"/>
+    <j.0:person rdf:resource="&pref;OnanaGerardParfait"/>
+  </owl:Class>
+  <owl:Class rdf:about="&pref;Pref34">
+    <j.0:deseaseType rdf:resource="&pref;Respiratoire"/>
+    <j.0:person rdf:resource="&pref;BellaBeyeneMartinBorel"/>
+  </owl:Class>
+  <owl:Class rdf:about="&pref;Pref14">
+    <j.0:deseaseType rdf:resource="&pref;Digestive"/>
+    <j.0:person rdf:resource="&pref;MamoudouAboubakar"/>
+  </owl:Class>
+  <owl:Class rdf:about="&pref;Pref46">
+    <j.0:deseaseType rdf:resource="&pref;Contagieuse"/>
+    <j.0:person rdf:resource="&pref;PiegamKamgaGevais"/>
+  </owl:Class>
+  <owl:Class rdf:about="&pref;Pref38">
+    <j.0:deseaseType rdf:resource="&pref;Cancer"/>
+    <j.0:person rdf:resource="&pref;EkaniRodriguePascal"/>
+  </owl:Class>
+  <owl:Class rdf:about="&pref;Pref26">
+    <j.0:deseaseType rdf:resource="&pref;Respiratoire"/>
+    <j.0:person rdf:resource="&pref;MouafoMouafoLandry"/>
+  </owl:Class>
+  <owl:Class rdf:about="&pref;Pref18">
+    <j.0:deseaseType rdf:resource="&pref;Contagieuse"/>
+    <j.0:person rdf:resource="&pref;KingueNadegeAgnes"/>
+  </owl:Class>
+  <owl:Class rdf:about="&pref;Pref19">
+    <j.0:deseaseType rdf:resource="&pref;Rare"/>
+    <j.0:person rdf:resource="&pref;GuimpiJosianeChanceline"/>
+  </owl:Class>
+  <owl:Class rdf:about="&pref;Pref3">
+    <j.0:deseaseType rdf:resource="&pref;Rare"/>
+    <j.0:person rdf:resource="&pref;AtanganaRogerBlaise"/>
+  </owl:Class>
+  <owl:Class rdf:about="&pref;Pref7">
+    <j.0:deseaseType rdf:resource="&pref;Cardiovasculaire"/>
+    <j.0:person rdf:resource="&pref;GounouMoukamNestor"/>
+  </owl:Class>
+  <owl:Class rdf:about="&pref;Pref43">
+    <j.0:deseaseType rdf:resource="&pref;Cardiovasculaire"/>
+    <j.0:person rdf:resource="&pref;PiemiChouriOrlie"/>
+  </owl:Class>
+  <owl:Class rdf:about="&pref;Pref31">
+    <j.0:deseaseType rdf:resource="&pref;Dermatologiques"/>
+    <j.0:person rdf:resource="&pref;KamdjomCollecteVeronique"/>
+  </owl:Class>
+  <owl:Class rdf:about="&pref;Pref23">
+    <j.0:deseaseType rdf:resource="&pref;Respiratoire"/>
+    <j.0:person rdf:resource="&pref;SamenGeorgesConstant"/>
+  </owl:Class>
+  <owl:Class rdf:about="&pref;Person"/>
+  <owl:Class rdf:about="&pref;Pref11">
+    <j.0:deseaseType rdf:resource="&pref;Digestive"/>
+    <j.0:person rdf:resource="&pref;EwoloEkwalePascal"/>
+  </owl:Class>
+  <owl:Class rdf:about="&pref;Pref47">
+    <j.0:deseaseType rdf:resource="&pref;Digestive"/>
+    <j.0:person rdf:resource="&pref;SergesAlainKom"/>
+  </owl:Class>
+  <owl:Class rdf:about="&pref;Pref35">
+    <j.0:deseaseType rdf:resource="&pref;Cancer"/>
+    <j.0:person rdf:resource="&pref;TokoJulesEric"/>
+  </owl:Class>
+  <owl:Class rdf:about="&pref;Pref27">
+    <j.0:deseaseType rdf:resource="&pref;Rare"/>
+    <j.0:person rdf:resource="&pref;MoukamKamdemDebora"/>
+  </owl:Class>
+  <owl:Class rdf:about="&pref;Pref15">
+    <j.0:deseaseType rdf:resource="&pref;Dermatologiques"/>
+    <j.0:person rdf:resource="&pref;SeniFarikouAdamou"/>
+  </owl:Class>
+  <owl:Class rdf:about="&pref;Pref39">
+    <j.0:deseaseType rdf:resource="&pref;Rare"/>
+    <j.0:person rdf:resource="&pref;AmadouBabaOmer"/>
+  </owl:Class>
+  <owl:Class rdf:about="&pref;Preference"/>
+  <owl:Class rdf:about="&pref;Pref.15619275769805">
+    <rdfs:subClassOf rdf:resource="&pref;Preference"/>
+    <pref:deseaseType rdf:resource="&pref;Cancer"/>
+    <pref:person rdf:resource="http://uy1/m1/groupe22#jdieuhou@gmail.com"/>
+  </owl:Class>
+  <owl:Class rdf:about="&pref;Pref4">
+    <j.0:deseaseType rdf:resource="&pref;Genetique"/>
+    <j.0:person rdf:resource="&pref;GermaineAbenaAgnes"/>
+  </owl:Class>
+  <owl:Class rdf:about="&pref;Pref40">
+    <j.0:deseaseType rdf:resource="&pref;Genetique"/>
+    <j.0:person rdf:resource="&pref;TchatatLoicKevin"/>
+  </owl:Class>
+  <owl:Class rdf:about="&pref;Pref32">
+    <j.0:deseaseType rdf:resource="&pref;Cardiovasculaire"/>
+    <j.0:person rdf:resource="&pref;AmougouAtebaBoris"/>
+  </owl:Class>
+  <owl:Class rdf:about="&pref;Pref20">
+    <j.0:deseaseType rdf:resource="&pref;Cardiovasculaire"/>
+    <j.0:person rdf:resource="&pref;TeffoTalouJean"/>
+  </owl:Class>
+  <owl:Class rdf:about="&pref;Pref8">
+    <j.0:deseaseType rdf:resource="&pref;Respiratoire"/>
+    <j.0:person rdf:resource="&pref;TcholoDidierAlain"/>
+  </owl:Class>
+  <owl:Class rdf:about="&pref;Pref12">
+    <j.0:deseaseType rdf:resource="&pref;Rare"/>
+    <j.0:person rdf:resource="&pref;GeorgesAnatoleBienvenue"/>
+  </owl:Class>
+  <owl:Class rdf:about="&pref;Pref44">
+    <j.0:deseaseType rdf:resource="&pref;Respiratoire"/>
+    <j.0:person rdf:resource="&pref;NjoyaNchareHonorine"/>
+  </owl:Class>
+  <owl:Class rdf:about="&pref;Pref36">
+    <j.0:deseaseType rdf:resource="&pref;Digestive"/>
+    <j.0:person rdf:resource="&pref;AliAyadaOusmane"/>
+  </owl:Class>
+  <owl:Class rdf:about="&pref;Pref24">
+    <j.0:deseaseType rdf:resource="&pref;Cancer"/>
+    <j.0:person rdf:resource="&pref;TsogoBertinDePaul"/>
+  </owl:Class>
+  <owl:Class rdf:about="&pref;Pref16">
+    <j.0:deseaseType rdf:resource="&pref;Genetique"/>
+    <j.0:person rdf:resource="&pref;FodioAlbertDominique"/>
+  </owl:Class>
+  <owl:Class rdf:about="&pref;Pref48">
+    <j.0:deseaseType rdf:resource="&pref;Rare"/>
+    <j.0:person rdf:resource="&pref;MeliHermaneAstrid"/>
+  </owl:Class>
+  <owl:Class rdf:about="&pref;Pref28">
+    <j.0:deseaseType rdf:resource="&pref;Genetique"/>
+    <j.0:person rdf:resource="&pref;MengueMenyeFrancine"/>
+  </owl:Class>
+  <owl:Class rdf:about="&pref;Pref5">
+    <j.0:deseaseType rdf:resource="&pref;Digestive"/>
+    <j.0:person rdf:resource="&pref;NanaMartinPaul"/>
+  </owl:Class>
+  <owl:Class rdf:about="&pref;Pref41">
+    <j.0:deseaseType rdf:resource="&pref;Digestive"/>
+    <j.0:person rdf:resource="&pref;MekoEllaPaul"/>
+  </owl:Class>
+  <owl:Class rdf:about="&pref;Pref9">
+    <j.0:deseaseType rdf:resource="&pref;Rare"/>
+    <j.0:person rdf:resource="&pref;KamenikamteEveline"/>
+  </owl:Class>
+  <owl:Class rdf:about="&pref;Pref21">
+    <j.0:deseaseType rdf:resource="&pref;Genetique"/>
+    <j.0:person rdf:resource="&pref;TumeBlandineDifon"/>
+  </owl:Class>
+  <owl:Class rdf:about="&pref;Pref45">
+    <j.0:deseaseType rdf:resource="&pref;Rare"/>
+    <j.0:person rdf:resource="&pref;KwakamVictorSerges"/>
+  </owl:Class>
+  <owl:Class rdf:about="&pref;Pref33">
+    <j.0:deseaseType rdf:resource="&pref;Genetique"/>
+    <j.0:person rdf:resource="&pref;AkoaSandraLucie"/>
+  </owl:Class>
+  <owl:Class rdf:about="&pref;Pref25">
+    <j.0:deseaseType rdf:resource="&pref;Digestive"/>
+    <j.0:person rdf:resource="&pref;MoudjoHorineAgateFlore"/>
+  </owl:Class>
+  <owl:Class rdf:about="&pref;Pref13">
+    <j.0:deseaseType rdf:resource="&pref;Respiratoire"/>
+    <j.0:person rdf:resource="&pref;NjikeNanaMartin"/>
+  </owl:Class>
+  <owl:Class rdf:about="&pref;Pref49">
+    <j.0:deseaseType rdf:resource="&pref;Rare"/>
+    <j.0:person rdf:resource="&pref;FoukengMefoDesire"/>
+  </owl:Class>
+  <owl:Class rdf:about="&pref;Pref37">
+    <j.0:deseaseType rdf:resource="&pref;Contagieuse"/>
+    <j.0:person rdf:resource="&pref;TchapdaOnanaPatric"/>
+  </owl:Class>
+  <owl:Class rdf:about="&pref;Pref1">
+    <j.0:deseaseType rdf:resource="&pref;Contagieuse"/>
+    <j.0:person rdf:resource="&pref;JeanPierre"/>
+  </owl:Class>
+  <owl:Class rdf:about="&pref;Pref29">
+    <j.0:deseaseType rdf:resource="&pref;Cancer"/>
+    <j.0:person rdf:resource="&pref;EwaneCendrineFlore"/>
+  </owl:Class>
+  <owl:Class rdf:about="&pref;Pref17">
+    <j.0:deseaseType rdf:resource="&pref;Cardiovasculaire"/>
+    <j.0:person rdf:resource="&pref;FeuteMarieAngele"/>
+  </owl:Class>
+</rdf:RDF>
