@@ -3,6 +3,8 @@ package com.example.pgsql.repository;
 import java.util.List;
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpSession;
+
 import com.example.pgsql.beans.*;
 
 
@@ -12,9 +14,12 @@ import com.example.pgsql.beans.*;
  */
 public class SPARQLThreadRepository
 {
-	public SPARQLThreadRepository()
+	//La session en cours
+	private HttpSession session;
+	
+	public SPARQLThreadRepository(HttpSession session)
 	{
-
+		this.session = session;
 	}
 
 	/**
@@ -52,14 +57,14 @@ public class SPARQLThreadRepository
 					if (ompJ == 0) {{
 
 						// Réquêtes vers O4TSS
-						O4TSSRDF basis1 = new O4TSSRDF();
+						O4TSSRDF basis1 = new O4TSSRDF(session);
 						ompContext.local_list.addAll(basis1.autoCompleteQuery(ompContext.param_term));
 
 					}}
 					else if (ompJ == 1) 
 					{{
 						// Réquêtes vers O4UP
-						O4UPRDF basis2 = new O4UPRDF();
+						O4UPRDF basis2 = new O4UPRDF(session);
 						ompContext.local_list1.addAll(basis2.autoCompleteQuery(ompContext.param_term));
 
 					}}
@@ -87,14 +92,14 @@ public class SPARQLThreadRepository
 	public JSONResponse fullSearch(String termFull)
 	{
 		// Les listes
-		List<Disease> list2 = new ArrayList<Disease>();
-		List<Disease> list3 = new ArrayList<Disease>();
+		List<Desease> list2 = new ArrayList<Desease>();
+		List<Desease> list3 = new ArrayList<Desease>();
 
 		/* === OMP CONTEXT === */
 		class OMPContext {
 			public String param_termFull;
-			public List<Disease> local_list2;
-			public List<Disease> local_list3;
+			public List<Desease> local_list2;
+			public List<Desease> local_list3;
 		}
 
 		final OMPContext ompContext = new OMPContext();
@@ -116,14 +121,14 @@ public class SPARQLThreadRepository
 					if (ompJ == 0) {{
 
 						// Réquêtes vers O4TSS
-						O4TSSRDF basis1 = new O4TSSRDF();
+						O4TSSRDF basis1 = new O4TSSRDF(session);
 						ompContext.local_list2.addAll(basis1.fullQuery(ompContext.param_termFull));
 
 					}}
 					else if (ompJ == 1) 
 					{{
 						// Réquêtes vers O4UP
-						O4UPRDF basis2 = new O4UPRDF();
+						O4UPRDF basis2 = new O4UPRDF(session);
 						ompContext.local_list3.addAll(basis2.fullQuery(ompContext.param_termFull));
 
 					}}
