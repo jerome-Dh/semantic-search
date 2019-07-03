@@ -12,6 +12,11 @@ import org.apache.jena.util.FileManager;
 import org.apache.jena.vocabulary.OWL;
 import org.apache.jena.vocabulary.RDFS;
 import org.apache.jena.vocabulary.RDF;
+import org.apache.jena.vocabulary.VCARD;
+
+import org.apache.jena.reasoner.Reasoner;
+import org.apache.jena.reasoner.ReasonerRegistry;
+import org.apache.jena.reasoner.ValidityReport;
 
 import java.util.Iterator;
 import java.util.StringTokenizer;
@@ -21,17 +26,19 @@ import java.util.ArrayList;
 import com.example.pgsql.model.Users;
 
 
-public class BaseOnto {
+public abstract class BaseOnto {
 
 	/**
 	 * Répertoire des données rdf, owl, ..
-	 * @return String 
+	 *
+	 * @var String 
 	 */
     public static final String SOURCE = "./data/";
 
     /**
 	 * les namespaces des ontologies
-	 * @return String
+	 *
+	 * @var String
 	 */
     public static final String PIZZA_NS = "http://www.co-ode.org/ontologies/pizza/pizza.owl#";
 	public static final String BFO_NS = "http://www.ifomis.org/bfo/1.1#";
@@ -51,7 +58,7 @@ public class BaseOnto {
     public static final String RDF_NS = "http://www.w3.org/1999/02/22-rdf-syntax-ns#";
     public static final String OBOINOWL_NS = "http://www.geneontology.org/formats/oboInOwl#";
     public static final String UBIS_NS = "http://ubisworld.org/documents/ubis.rdf#";
-
+	public static final String PREF_NS = "http://uy1/m1/groupe22#";
 	
 	/**
 	 * @return OntModel
@@ -65,16 +72,29 @@ public class BaseOnto {
 	{
 		ontModel = getModel(fileName);
 	}
+	
+	/**
+	 * Changer le nom du model 
+	 * 
+	 * @param String fileName - le nom du fichier
+	 */
+	public void setOntModel(String fileName)
+	{
+		this.ontModel = getModel(fileName);
+	}
 
 	// Les préfixes des réquêtes
 	protected String getPrefix()
 	{
 		return "prefix bfo: <" + BFO_NS + ">\n" +
 					"prefix rdfs: <" + RDFS.getURI() + ">\n" +
+					"prefix rdf: <" + RDF.getURI() + ">\n" +
+					"prefix vcard: <" + VCARD.getURI() + ">\n" +
 					"prefix oboInOwl: <" + OBOINOWL_NS + ">\n" +
 					"prefix obo: <" + OBO_NS + ">\n" +
 					"prefix ubis: <" + UBIS_NS + ">\n" +
-					"prefix owl: <" + OWL.getURI() + ">\n";
+					"prefix owl: <" + OWL.getURI() + ">\n" +
+					"prefix pref: <" + PREF_NS + ">\n";
 	}
 
 	/**
@@ -122,16 +142,16 @@ public class BaseOnto {
 				QuerySolution soln = results.nextSolution();
 
 				String	label = getLiteral(soln, "label");
-				String	genre = getLiteral(soln, "genre"); 
+				String	description = getLiteral(soln, "description"); 
 
 				// Afficher le résultat retourné en console
 				/* System.out.println(
 					++i + ") " + 
 					label + " -+- " +
-					genre + " -+- " 
+					description + " -+- " 
 					); */
 	
-				list.add(new AutoComplete(label, genre));
+				list.add(new AutoComplete(label, description));
 			}
         }
         finally 
@@ -144,14 +164,31 @@ public class BaseOnto {
     }
 
 	/**
-	 * Afficher le résultat FullQuery
+	 * Effectuer le FullQuery
 	 */
-	protected List<Disease> showFullQuery( String q ) 
+	protected List<Desease> showFullQuery( String q ) 
 	{
-		List<Disease> diseases = new ArrayList<Disease>();
+		System.out.println(q);
+
+		List<Desease> diseases = new ArrayList<Desease>();
 
 		Query query = QueryFactory.create( getPrefix() + q );
-        QueryExecution qexec = QueryExecutionFactory.create( query, ontModel );
+		QueryExecution qexec;
+
+		//Configurer le reasoner
+		if(this.useReasoner())
+		{
+			System.out.println("\nUtilisation du raisonneur\n");
+
+			Reasoner reasoner = ReasonerRegistry.getOWLReasoner();
+			InfModel inf = ModelFactory.createInfModel(reasoner, ontModel);
+			qexec = QueryExecutionFactory.create( query, inf );
+		}
+		else
+		{
+			System.out.println("\nPas de raisonneur\n");
+			qexec = QueryExecutionFactory.create( query, ontModel );
+		}
 
 		try 
 		{
@@ -166,23 +203,17 @@ public class BaseOnto {
 			{
 				QuerySolution soln = results.nextSolution();
 
-				String classe = getLiteral(soln, "classe");
 				String label = getLiteral(soln, "label");
-				String comment = getLiteral(soln, "comment");
-				String genre = getLiteral(soln, "genre"); 
-				String lienWiki = getLiteral(soln, "lienWiki");
+				String description = getLiteral(soln, "description");
 
 				// Tester le type de résultat retourné
 				/* System.out.println(
 					++i + ") " + 
-					classe + " -+- " + 
 					label + " -+- " + 
-					comment + " -+- " + 
-					genre + " -+- " +
-					lienWiki
+					description + " -+- "
 					); */
 					
-				diseases.add(new Disease(label, comment, genre, lienWiki));
+				diseases.add(new Desease(label, description, "", ""));
 
 			}
         }
@@ -213,12 +244,19 @@ public class BaseOnto {
 			{
 				QuerySolution soln = results.nextSolution();
 
-				String label = getLiteral(soln, "label");
-				String identifier = getLiteral(soln, "identifier");
-				String category = getLiteral(soln, "category");
+				String email = getLiteral(soln, "email");
+				String password = getLiteral(soln, "password");
+				String name = getLiteral(soln, "name");
+				String firstName = getLiteral(soln, "firstName");
+				String adresse = getLiteral(soln, "adresse");
+				String tel = getLiteral(soln, "tel");
+				String country = getLiteral(soln, "country");
+				String title = getLiteral(soln, "title");
+				String sexe = getLiteral(soln, "sexe");
 
-				user = new Users(label, "", "", identifier, category, "");
-
+	
+				user = new Users(name, firstName, email, password,
+					title, sexe, adresse, tel, country);	
 			}
         }
         finally {
@@ -227,6 +265,38 @@ public class BaseOnto {
 
 		return user;
 
+	}
+	
+	/**
+	 * Liste des préférences
+	 */
+	public List<String> getPreferencesUser(String q)
+	{
+		System.out.println(q);
+		List<String> liste = new ArrayList<String>();
+
+		Query query = QueryFactory.create( getPrefix() + q );
+
+		QueryExecution qexec = QueryExecutionFactory.create( query, ontModel );
+
+		try 
+		{
+            ResultSet results = qexec.execSelect();
+
+			if(results.hasNext())
+			{
+				QuerySolution soln = results.nextSolution();
+
+				String deseaseType = getLiteral(soln, "deseaseType");
+				
+				liste.add(deseaseType);
+			}
+        }
+        finally {
+            qexec.close();
+        }
+		
+		return liste;
 	}
 
 
@@ -258,9 +328,16 @@ public class BaseOnto {
 		return ret;
 
 	}
+	
+	/**
+	 * Utiliser le reasoner pour le chargement
+	 *
+	 * @return true|false;
+	 */
+	protected abstract boolean useReasoner();
 
 	/**
-	 * Créer un sur l'ontologie chargée
+	 * Créer un modèle sur l'ontologie chargée
 	 */
 	protected OntModel getModel(String nom_fichier) 
 	{
