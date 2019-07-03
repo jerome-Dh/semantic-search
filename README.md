@@ -7,7 +7,7 @@
 
 EpiSearch est un moteur de reherche sémantique qui utilise les ontologie d'Epicam et ceux fournies par DBPedia pour offrir les informations à l'utilisateur concernant les maladies, les médicaments et les patients atteints de certains symtômes
 
-S'il vous plait, rendez-vous ![ici] (https://en.wikipedia.org/wiki/Semantic_search) pour plus d'informations sur la recherche sémantique
+S'il vous plait, rendez-vous ![sur Wikipedia](https://en.wikipedia.org/wiki/Semantic_search) pour plus d'informations sur la recherche sémantique
 
 
 ## Commencer
