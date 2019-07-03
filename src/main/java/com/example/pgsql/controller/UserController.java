@@ -14,6 +14,7 @@ import com.example.pgsql.exception.ResourceNotFoundException;
 import com.example.pgsql.model.Users;
 import com.example.pgsql.repository.UserRepository;
 import com.example.pgsql.repository.SPARQLRepository;
+import com.example.pgsql.repository.UserRDFRepository;
 import com.example.pgsql.beans.Login;
 
 
@@ -44,7 +45,7 @@ public class UserController
 		//user = userRepository.findByEmail(email);
 		
 		//Chercher dans l'ontologie
-		SPARQLRepository sparqlRepository = new SPARQLRepository();
+		SPARQLRepository sparqlRepository = new SPARQLRepository(session);
 		user = sparqlRepository.getUser(email, password);
 		
 		if(user != null)
@@ -53,6 +54,10 @@ public class UserController
 			{
 				status = true;
 				comment = "Connecté avec succès !";
+				
+				session.setAttribute("user", user);
+
+				System.out.println("Email: " + email + " Password: " + password);
 			}
 			else
 			{
@@ -63,10 +68,8 @@ public class UserController
 		{
 			comment = "Données introuvables, veuillez réessayer !";
 		}
-
-		session.setAttribute("user", user);
-		
-		System.out.println("Email: " + email + " Password: " + password);
+	
+		System.out.println(comment);
 
         return new Login(status, user, comment);
 
@@ -79,7 +82,12 @@ public class UserController
     @PostMapping("/user")
     public Login createUser(@RequestBody Users user, HttpSession session) 
 	{
-		user = userRepository.save(user);
+		//Enregistrer en BD 
+		//user = userRepository.save(user);
+		
+		//Enregistrer dans l'ontologie
+		UserRDFRepository userRDFRepository = new UserRDFRepository();
+		userRDFRepository.create(user);
 
 		boolean status = true;
 
@@ -140,6 +148,47 @@ public class UserController
 			return "redirect:/account";
 		else
 			return "inscription";
+	}
+	
+	/**
+	 * Formulaire de création des préférences
+	 */
+	@GetMapping("/preferences")
+	public String preferences(HttpSession session)
+	{
+		if(session.getAttribute("user") != null)
+			return "preferences";
+		else
+			return "redirect:/inscription";
+	}
+	
+	/**
+	 * Enregistrer les préférences d'un user
+	 */
+	@ResponseBody
+    @GetMapping("/savepreferences")
+    public Login createPreferences(
+		@RequestParam(required=true) String prefs,
+		HttpSession session) 
+	{
+		Users user = null;
+		boolean status = false;
+		String comment = "Echec d'enregistrement";
+		
+		if(session.getAttribute("user") != null)
+		{
+			user = (Users)session.getAttribute("user");
+
+			//Enregistrer dans l'ontologie
+			UserRDFRepository userRDFRepository = new UserRDFRepository();
+			userRDFRepository.addPreferences(user, prefs);
+
+			status = true;
+			comment = "Enregistrer avec succès";		
+
+		}
+		
+		return new Login(status, user, comment);
 	}
 
 }
