@@ -10,6 +10,8 @@ import org.apache.jena.rdf.model.* ;
 import org.apache.jena.vocabulary.DC ;
 import org.apache.jena.util.FileManager;
 
+import javax.servlet.http.HttpSession;
+
 import com.example.pgsql.beans.*;
 import com.example.pgsql.model.Users;
 
@@ -21,26 +23,32 @@ import com.example.pgsql.model.Users;
 public class SPARQLRepository
 {
 	/**
+	* La session en cours
+	* @var HttpSession session
+	*/
+	private HttpSession session;
+	
+	/**
 	 * Constructor
 	 */
-	public SPARQLRepository()
+	public SPARQLRepository(HttpSession session)
 	{
-
+		this.session = session;
 	}
 
 	/**
-	 * Gestion de l'autocomplétion
+	 * Autocomplétion
 	 */
 	public List<AutoComplete> findForAutoComplete(String term)
 	{
 		List<AutoComplete> list = new ArrayList<AutoComplete>();
 
 		// Réquêtes vers O4TSS
-		O4TSSRDF basis1 = new O4TSSRDF();
+		O4TSSRDF basis1 = new O4TSSRDF(this.session);
 		list.addAll(basis1.autoCompleteQuery(term));
 
 		// Réquêtes vers O4UP
-		O4UPRDF basis2 = new O4UPRDF();
+		O4UPRDF basis2 = new O4UPRDF(this.session);
 		list.addAll(basis2.autoCompleteQuery(term));
 
 		return list;
@@ -48,7 +56,7 @@ public class SPARQLRepository
 	}
 
 	/**
-	 * Gestion des réquêtes à réponses complètes
+	 * Full Search
 	 */
 	public JSONResponse fullSearch(String term)
 	{
@@ -57,11 +65,11 @@ public class SPARQLRepository
 		JSONResponse jsonResponse = new JSONResponse();
 
 		// Fouiller dans 04TSS
-		O4TSSRDF basis1 = new O4TSSRDF();
+		O4TSSRDF basis1 = new O4TSSRDF(this.session);
 		jsonResponse.addDiseases(basis1.fullQuery(term));
 
 		// Fouiller dans O4UP
-		O4UPRDF basis2 = new O4UPRDF();
+		O4UPRDF basis2 = new O4UPRDF(this.session);
 		jsonResponse.addDiseases(basis2.fullQuery(term));
 
 		return jsonResponse;
@@ -73,7 +81,7 @@ public class SPARQLRepository
 	 */
 	public Users getUser(String login, String password)
 	{
-		O4UPRDF o4TSS = new O4UPRDF();
+		O4UPRDF o4TSS = new O4UPRDF(session);
 		Users user = o4TSS.getUser(login, password);
 
 		return user;
