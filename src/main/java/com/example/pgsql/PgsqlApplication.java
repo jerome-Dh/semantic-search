@@ -31,9 +31,9 @@ public class PgsqlApplication {
 	public CommandLineRunner demo(UserRepository repository) {
 		return (args) -> {
 			// save a couple of customers
-			repository.save(new Users("Jack", "Bauer", "Jack", "bhgfh", "ghgh", "f"));
-			repository.save(new Users("Jack2", "Bauer", "Jack", "bhgfh", "ghgh", "m"));
-			repository.save(new Users("Jack3", "Bauer", "Jack", "bhgfh", "ghgh", "f"));
+			repository.save(new Users("Jack", "Bauer", "Jack", "bhgfh", "ghgh", "f", "", "", ""));
+			repository.save(new Users("Jack2", "Bauer", "Jack", "bhgfh", "ghgh", "m", "", "", ""));
+			repository.save(new Users("Jack3", "Bauer", "Jack", "bhgfh", "ghgh", "f", "", "", ""));
 
 			// fetch all customers
 			log.info("Customers found with findAll():");
