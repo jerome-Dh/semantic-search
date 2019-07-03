@@ -1,0 +1,54 @@
+
+<!Doctype html>
+<html th:replace="~{fragments/template :: layout(~{::title}, ~{}, ~{::main}, ~{::script})}">
+
+	<!-- Insertion du head -->
+	<head>
+
+		<title>Préférences - Episearch</title>
+
+	</head>
+
+	<body>
+
+		<!-- Le conteneur principale -->
+		<main role="main">
+
+			<h1 class="text-center beautiful">Préférences</h1>
+
+			<div class="album py-5 bg-light">
+
+				<div class="container">
+
+					<div class="row">
+
+						<div class="col-md-3"></div>
+
+						<div class="col-md-6">
+
+							<div class="item" id="preferences">
+
+								<h3>Choisissez vos préférences</h3>
+
+								<!-- Insertion des fenêtres modales  -->
+								<div th:replace="fragments/form_preferences :: form_preferences ('/savepreferences')"></div>
+
+							</div>
+							
+							<div class="col-md-3"></div>
+	
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</main>
+		
+		<script src="js/account.js"></script>
+
+	</body>
+
+</html>
