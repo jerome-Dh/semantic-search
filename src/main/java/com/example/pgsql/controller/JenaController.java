@@ -1,15 +1,17 @@
 package com.example.pgsql.controller;
 
-import java.util.List;
-import java.util.ArrayList;
+import java.util.*;
+import java.time.*;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.CrossOrigin;
+// import org.springframework.web.bind.annotation.RestController;
+// import org.springframework.web.bind.annotation.GetMapping;
+// import org.springframework.web.bind.annotation.RequestParam;
+// import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.*;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import com.example.pgsql.repository.*;
@@ -26,20 +28,41 @@ import com.example.pgsql.beans.*;
 @RestController
 public class JenaController
 {
+	
+	/**
+	 * Activé/Désactiver le reasoner
+	 */
+	//@CrossOrigin()
+	@GetMapping("/reasoner")
+	public String reasonerml(
+		HttpSession httpSession,
+		@RequestParam(required=true) String term
+		)
+	{
 
+		//Sauvegarder en session
+		httpSession.setAttribute("reasoner", term);
+		
+		System.out.println("Statut du reasoner: " + term);
+
+		return "ok";
+
+	}
+		
 
 	/**
 	 * Auto-complétetion
 	 */
-	@CrossOrigin()
+	//@CrossOrigin()
 	@GetMapping("autocomplete")
 	public List<AutoComplete> autocomplete(
+		HttpSession httpSession,
 		@RequestParam(required=false, defaultValue="") String term)
 	{
 
-		//SPARQLRepository repository = new SPARQLRepository();
+		//SPARQLRepository repository = new SPARQLRepository(httpSession);
 
-		SPARQLThreadRepository repository = new SPARQLThreadRepository();
+		SPARQLThreadRepository repository = new SPARQLThreadRepository(httpSession);
 
 		return repository.findForAutoComplete(term);
 
@@ -48,9 +71,10 @@ public class JenaController
 	/**
 	 * Recherche complète (Full)
 	 */
-	@CrossOrigin()
+	//@CrossOrigin()
 	@GetMapping("fullsearch")
 	public JSONResponse fullsearch(
+		HttpSession httpSession,
 		@RequestParam(required=false, defaultValue="") String term,
 		@RequestParam(required=false, defaultValue="1") String thread
 		)
@@ -62,13 +86,13 @@ public class JenaController
 		if(thread.equals("1"))
 		{
 			log("\t\t Execution multithread \n\n");
-			SPARQLThreadRepository repository = new SPARQLThreadRepository();
+			SPARQLThreadRepository repository = new SPARQLThreadRepository(httpSession);
 			jsonresponse = repository.fullSearch(term);
 		}
 		else
 		{
 			log("\t\t Execution monothread \n\n");
-			SPARQLRepository repository = new SPARQLRepository();
+			SPARQLRepository repository = new SPARQLRepository(httpSession);
 			jsonresponse = repository.fullSearch(term);
 		}
 
@@ -84,7 +108,7 @@ public class JenaController
 	 */
 	private long debutExecution()
 	{
-		//Capturer le temps au début
+		// == Capturer le temps au début
 
 		log("\n+-------------------------------------------+");
 		log("\t\t Début d'exécution ");
@@ -94,6 +118,15 @@ public class JenaController
 		return System.currentTimeMillis();
 
 	}
+	
+	@GetMapping("tester")
+	public String tester(HttpSession httpSession)
+	{
+		
+		return "Bienvenue";
+
+	}
+		
 	
 	/**
 	 * Fin de l'exécution
