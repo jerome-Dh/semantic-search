@@ -1,0 +1,92 @@
+<!-- Fragment de la zone modale -->
+<div th:fragment="form_preferences (action)">
+
+	<form action="#" th:action="${action}" 
+		th:object="${session.user}" method="GET" 
+		id="form_preferences">
+
+		<!-- Pref1 -->
+		<div class="form-group">
+			<div class="custom-control custom-checkbox custom-control-inline">
+				<input name="checkbox[]" id="checkbox_0" type="checkbox" 
+				class="custom-control-input" value="Cardiovasculaire"> 
+				<label for="checkbox_0" class="custom-control-label">
+				Maladies Cardiovasculaires
+				</label>
+			</div>
+		</div>
+		
+		<!-- Pref2 -->
+		<div class="form-group">
+			<div class="custom-control custom-checkbox custom-control-inline">
+				<input name="checkbox[]" id="checkbox_6" type="checkbox" 
+				class="custom-control-input" value="Cancer"> 
+				<label for="checkbox_6" class="custom-control-label">
+				Maladies Cancereuses
+				</label>
+			</div>
+		</div>
+		
+		<!-- Pref3 -->
+		<div class="form-group">
+			<div class="custom-control custom-checkbox custom-control-inline">
+				<input name="checkbox[]" id="checkbox_1" type="checkbox" 
+				class="custom-control-input" value="Respiratoire"> 
+				<label for="checkbox_1" class="custom-control-label">
+				Maladies Respiratoires
+				</label>
+			</div>
+		</div>
+		
+		<!-- Pref4 -->
+		<div class="form-group">
+			<div class="custom-control custom-checkbox custom-control-inline">
+				<input name="checkbox[]" id="checkbox_2" type="checkbox" 
+				class="custom-control-input" value="Dermatologiques"> 
+				<label for="checkbox_2" class="custom-control-label">
+				Maladies Dermatologiques
+				</label>
+			</div>
+		</div>
+		
+		<!-- Pref5 -->
+		<div class="form-group">
+			<div class="custom-control custom-checkbox custom-control-inline">
+				<input name="checkbox[]" id="checkbox_3" type="checkbox" 
+				class="custom-control-input" value="Rare"> 
+				<label for="checkbox_3" class="custom-control-label">
+				Maladies Rares
+				</label>
+			</div>
+		</div>
+		
+		<!-- Pref6 -->
+		<div class="form-group">
+			<div class="custom-control custom-checkbox custom-control-inline">
+				<input name="checkbox[]" id="checkbox_4" type="checkbox" 
+				class="custom-control-input" value="Genetique"> 
+				<label for="checkbox_4" class="custom-control-label">
+				Maladies Genetiques
+				</label>
+			</div>
+		</div>
+		
+		<!-- Pref7 -->
+		<div class="form-group">
+			<div class="custom-control custom-checkbox custom-control-inline">
+				<input name="checkbox[]" id="checkbox_5" type="checkbox" 
+				class="custom-control-input" value="Digestive"> 
+				<label for="checkbox_5" class="custom-control-label">
+				Maladies Digestives
+				</label>
+			</div>
+		</div>
+
+	  <div class="form-group">
+		<a href="#" th:href="@{/}" type="button" class="btn btn-secondary">Plus tard</a>
+		<button name="submit" type="submit" class="btn btn-primary">Valider</button>
+	  </div>
+
+	</form>
+
+</div>
