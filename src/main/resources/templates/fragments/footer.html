@@ -1,69 +1,87 @@
 
-		<!-- Fragment du pied de page -->
-		<footer th:fragment="footer" class="container py-5">
+	<!-- Fragment du pied de page -->
+	<footer th:fragment="footer" class="container py-5">
 
-			<div class="row">
+		<div class="row">
 
-				<div class="col-12 col-md">
-					<img src="images/logo.png" width="50"/>
-					<small class="d-block mb-3 text-muted">&copy; 2019</small>
-				</div>
-
-				<div class="col-6 col-md">
-					<h5>Navigation</h5>
-					<ul class="list-unstyled text-small">
-						<li><a class="text-muted" href="/">Accueil</a></li>
-						<li th:if="${session.user == null}"><a class="text-muted" href="/inscription" th:href="@{/inscription}">Inscription</a></li>
-						<li th:if="${session.user == null}"><a class="text-muted" href="#" data-toggle="modal" data-target=".connexion-modale">Connexion</a></li>
-						<li th:unless="${session.user == null}"><a class="text-muted" href="/account" th:href="@{/account}">Mon compte</a></li>
-						<li><a class="text-muted" href="http://fr.dbpedia.org/" target="_blank">DBPedia</a></li>
-					</ul>
-				</div>
-
-				<div class="col-6 col-md">
-					<h5>Ressources</h5>
-					<ul class="list-unstyled text-small">
-						<li><a class="text-muted" href="https://www.w3.org/2003/08/owl-pressrelease.html.fr" target="_blank">Ontologies</a></li>
-						<li><a class="text-muted" href="https://www.w3.org/TR/rdf-sparql-query/" target="_blank">SPARQL</a></li>
-						<li><a class="text-muted" href="https://fr.wikipedia.org/wiki/Web_des_donn%C3%A9es" target="_blank">
-							<i class="fa fa-wikipedia-w" aria-hidden="true"></i>
-							Autres ressources</a></li>
-						<li>
-							<div class="form-group">
-							  <div class="custom-control custom-checkbox custom-control-inline">
-								<input name="checkbox_processeur" id="checkbox_processeur" type="checkbox" checked class="custom-control-input" value="confirmation"> 
-								<label for="checkbox_processeur" class="custom-control-label text-muted">Multithread</label>
-							  </div>
-							</div> 
-						</li>
-					</ul>
-				</div>
-
-				<div class="col-6 col-md">
-					<h5>Conditions d'utilisation</h5>
-					<ul class="list-unstyled text-small">
-						<li><a class="text-muted" href="aide">Aide</a></li>
-						<li><a class="text-muted" href="contact">Contact</a></li>
-						<li><select id="choiceLang">
-							<option value="fr">Français</option>
-							<option value="en">Anglais</option>
-						</select></li>
-					</ul>
-				</div>
-
-				<div class="col-6 col-md">
-					<h5>A propos</h5>
-					<ul class="list-unstyled text-small">
-						<li><a class="text-muted" href="https://github.com/jerome-Dh/semantic-search/graphs/contributors" target="_blank">Contributeurs</a></li>
-						<li><a class="text-muted" href="https://facsciences.uy1.cm/category/departement-dinformatique/" target="_blank">UY1 - Informatique</a></li>
-						<li><a class="text-muted" href="policies">Politique d'utilisation</a></li>
-						<li>
-							<a class="text-muted" href="https://github.com/jerome-Dh/semantic-search" target="_blank">
-								<i class="fa fa-github" aria-hidden="true"></i>
-							Github</a></li>
-					</ul>
-				</div>
-
+			<div class="col-12 col-md">
+				<img src="images/logo.png" width="50"/>
+				<small class="d-block mb-3 text-muted">&copy; 2019</small>
 			</div>
 
-		</footer>
+			<div class="col-6 col-md">
+
+				<h5>Navigation</h5>
+
+				<ul class="list-unstyled text-small">
+					<li><a class="text-muted" href="/">Accueil</a></li>
+					<li th:if="${session.user == null}"><a class="text-muted" href="/inscription" th:href="@{/inscription}">Inscription</a></li>
+					<li th:if="${session.user == null}"><a class="text-muted" href="#" data-toggle="modal" data-target=".connexion-modale">Connexion</a></li>
+					<li th:unless="${session.user == null}"><a class="text-muted" href="/account" th:href="@{/account}">Mon compte</a></li>
+					<li><a class="text-muted" href="http://fr.dbpedia.org/" target="_blank">DBPedia</a></li>
+				</ul>
+			</div>
+
+			<div class="col-6 col-md">
+
+				<h5>Ressources</h5>
+
+				<ul class="list-unstyled text-small">
+					<li><a class="text-muted" href="https://www.w3.org/2003/08/owl-pressrelease.html.fr" target="_blank">Ontologies</a></li>
+					<li><a class="text-muted" href="https://www.w3.org/TR/rdf-sparql-query/" target="_blank">SPARQL</a></li>
+					<li><a class="text-muted" href="https://fr.wikipedia.org/wiki/Web_des_donn%C3%A9es" target="_blank">
+						<i class="fa fa-wikipedia-w" aria-hidden="true"></i>
+						Autres ressources</a></li>
+					<li>
+						<div class="form-group">
+						  <div class="custom-control custom-checkbox custom-control-inline">
+							<input name="checkbox_processeur" id="checkbox_processeur" type="checkbox" checked class="custom-control-input" value="confirmation"> 
+							<label for="checkbox_processeur" class="custom-control-label text-muted">Multithread</label>
+						  </div>
+						</div> 
+					</li>
+					<li>
+						<div class="form-group">
+						  <div class="custom-control custom-checkbox custom-control-inline">
+							<input name="checkbox_reasoner" id="checkbox_reasoner" type="checkbox" class="custom-control-input" value="reasonner"> 
+							<label for="checkbox_reasoner" class="custom-control-label text-muted">Reasoner</label>
+						  </div>
+						</div> 
+					</li>
+				</ul>
+			</div>
+
+			<div class="col-6 col-md">
+
+				<h5>Conditions d'utilisation</h5>
+
+				<ul class="list-unstyled text-small">
+					<li><a class="text-muted" href="aide">Aide</a></li>
+					<li><a class="text-muted" href="contact">Contact</a></li>
+					<li>
+						<select id="choiceLang">
+							<option value="fr">Français</option>
+							<option value="en">Anglais</option>
+						</select>
+					</li>
+				</ul>
+			</div>
+
+			<div class="col-6 col-md">
+
+				<h5>A propos</h5>
+
+				<ul class="list-unstyled text-small">
+					<li><a class="text-muted" href="https://github.com/jerome-Dh/semantic-search/graphs/contributors" target="_blank">Contributeurs</a></li>
+					<li><a class="text-muted" href="https://facsciences.uy1.cm/category/departement-dinformatique/" target="_blank">UY1 - Informatique</a></li>
+					<li><a class="text-muted" href="policies">Politique d'utilisation</a></li>
+					<li>
+						<a class="text-muted" href="https://github.com/jerome-Dh/semantic-search" target="_blank">
+							<i class="fa fa-github" aria-hidden="true"></i>
+						Github</a></li>
+				</ul>
+			</div>
+
+		</div>
+
+	</footer>
