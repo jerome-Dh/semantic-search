@@ -36,7 +36,10 @@
 				'email':  $("#your_email").val(),
 				'password':  $("#your_password").val(),
 				'profession':  $("#profession").val(),
-				'sexe':  (($('#sexe_0').is(':checked')) ? 'h' : 'f')
+				'sexe':  (($('#sexe_0').is(':checked')) ? 'h' : 'f'),
+				'adresse' : $("#adresse").val(),
+				'telephone' : $("#telephone").val(),
+				'country' : $("#country").val()
 			},
 			url = $(this).attr('action');
 			
@@ -49,6 +52,37 @@
 			//user = $(this).serialize();
 			console.log( user );
 			saveUser( user, url );
+
+		});
+		
+		//Enregistrer les préférences
+		$("#form_preferences").submit(function(e){ 
+
+			e.preventDefault();
+
+			var prefs = $('#form_preferences :checkbox:checked');
+			var url = $(this).attr('action');
+
+			if(prefs.length == 0)
+			{
+				afficherNotif('Choississez au moins un élément !', 'warning', '#form_preferences', 'question');
+				return;
+			}
+
+			//Construire la chaine des préférences
+			var ch = "";
+			var valeurs = prefs.map(function(numero)
+			{
+				ch += ch == "" ? "": ";"
+				ch += $(this).val();
+				
+			}).get();
+
+			//Notification
+			scrollTo(0, 0);
+			traitementEncours('#form_preferences');
+
+			savePreferences( ch, url );
 
 		});
 		
@@ -80,9 +114,7 @@
 			return window.confirm(texte);
 
 		});
-		 
-		
-		
+
 		console.log("Le script users.js passe ! ");
 
 	});
@@ -121,7 +153,7 @@
 			afficherNotif('Votre compte a été créé avec succès !', 'success', '#form_inscription', 'check');
 
 			setTimeout(function(){
-				location.href='/account';
+				location.href='/preferences';
 			}, 3000);
 
 		})
@@ -135,6 +167,9 @@
 
 	}
 
+	/**
+	 * Log in user
+	 */
 	function logInUser(email, pasword)
 	{
 		var a = $.ajax({
@@ -155,7 +190,6 @@
 		.done(function(data, textStatus, jqXHR) {
 
 			console.log( data );
-			
 
 			if(typeof data === 'object')
 			{
@@ -185,6 +219,61 @@
 		});
 	}
 
+	/**
+	 * Sauvegarder les préférences d'un user
+	 */
+	function savePreferences(ch, myUrl)
+	{
+		var a = $.ajax({
+			url: myUrl,
+			method: 'GET',
+			data: 'prefs=' + ch,
+			dataType : 'json',
+			contentType : 'text/plain; charset=utf-8',
+			statusCode: {
+				404: function() {
+				  console.log( "Page not found" );
+				}
+			},
+
+			timeout: 10000
+
+		})
+		.done(function(data, textStatus, jqXHR) {
+
+			console.log( data );
+
+			if(typeof data === 'object')
+			{
+
+				if(typeof data.status !== 'undefined' && data.status == false )
+				{
+					//Afficher la notif d'echec
+					afficherNotif(data.comment, 'warning', '#form_preferences', 'question');
+				}
+				else
+				{
+					afficherNotif(data.comment, 'success', '#form_preferences', 'check');
+
+					setTimeout(function(){
+						location.href = "/account";
+					}, 3000);
+				}
+			}
+
+		})
+		.fail(function(result, textStatus, errorThrown) {
+			console.log( "Echec requete" );
+			afficherNotif('Echec de la réquête !', 'warning', '#form_preferences', 'question');
+		})
+		.always(function(data, textStatus, jqXHR) {
+			console.log( "Statut: " + textStatus );
+		});
+	}
+
+	/**
+	 * Déconnecter un user
+	 */
 	function logOutUser()
 	{
 
