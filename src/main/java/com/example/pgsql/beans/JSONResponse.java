@@ -3,33 +3,35 @@ package com.example.pgsql.beans;
 import java.util.List;
 import java.util.ArrayList;
 
+import com.example.pgsql.model.Users;
+
 /**
  * Classe répresentant le résultat à renvoyer sous forme JSON
  */
 public class JSONResponse
 {
-	List<Disease> diseases = new ArrayList<Disease>();
+	List<Desease> diseases = new ArrayList<Desease>();
 	List<Medicament> medicaments = new ArrayList<Medicament>();
-	List<Person> persons = new ArrayList<Person>();
+	List<Users> user = new ArrayList<Users>();
 
 	public JSONResponse()
 	{
 
 	}
 
-	public void addDisease(Disease disease)
+	public void addDisease(Desease Desease)
 	{
-		diseases.add(disease);
+		diseases.add(Desease);
 	}
 
-	public void addDiseases(List<Disease> diseases)
+	public void addDiseases(List<Desease> diseases)
 	{
 		this.diseases.addAll(diseases);
 	}
 
-	public void addPerson(Person person)
+	public void addUsers(Users user)
 	{
-		persons.add(person);
+		this.user.add(user);
 	}
 
 	public void addMedicaments(Medicament medicament)
@@ -38,7 +40,7 @@ public class JSONResponse
 	}
 
 	//===== Getters 
-	public List<Disease> getDiseases()
+	public List<Desease> getDiseases()
 	{
 		return diseases;
 	}
@@ -47,9 +49,9 @@ public class JSONResponse
 		
 		return medicaments;
 	}
-	public List<Person> getPersons()
+	public List<Users> getUsers()
 	{
-		return persons;
+		return user;
 	}
 	
 }
