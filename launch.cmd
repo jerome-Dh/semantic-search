@@ -1,6 +1,6 @@
 
 REM Script de démarrage de Spring-boot
-REM By Groupe 22
+REM By Jerome Dh 
 
 @echo off
 
