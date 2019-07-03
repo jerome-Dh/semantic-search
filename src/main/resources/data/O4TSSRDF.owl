@@ -13,8 +13,8 @@
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:skos="http://www.w3.org/2004/02/skos/core#"
-     xmlns:snap="http://www.ifomis.org/bfo/1.1/snap#"
-     xmlns:span="http://www.ifomis.org/bfo/1.1/span#"
+     xmlns:snap="http://www.infomis.org/bfo/1.1/snap#"
+     xmlns:span="http://www.insfomis.org/bfo/1.1/span#"
      xmlns:O4DSS="http://ummisco.fr/O4DSS#"
      xmlns:TRANS="http://purl.org/obo/owl/TRANS#"
      xmlns:oboInOwl="http://www.geneontology.org/formats/oboInOwl#">
@@ -20093,6 +20093,745 @@ in this hierarchy accomplish this. </rdfs:comment>
         <rdfs:comment>determination of temperature, pulse rate, rate of breathing, and level of blood pressure.</rdfs:comment>
         <ace:CN_pl>vital signs</ace:CN_pl>
     </rdf:Description>
+	
+	
+	<!-- Groupe 22 - 2019 - M1 -->
+	<owl:Class rdf:about="http://uy1/m1/groupe22#Desease"/>
+	
+	<!-- Les types de maladies -->
+	<owl:Class rdf:about="http://uy1/m1/groupe22#Contagieuse">
+		<rdfs:label>Contagieuse</rdfs:label>
+	</owl:Class>
+	<owl:Class rdf:about="http://uy1/m1/groupe22#Cardiovasculaire">
+		<rdfs:label>Cardiovasculaire</rdfs:label>
+	</owl:Class>
+	<owl:Class rdf:about="http://uy1/m1/groupe22#Cancer">
+		<rdfs:label>Cancer</rdfs:label>
+	</owl:Class>
+	<owl:Class rdf:about="http://uy1/m1/groupe22#Respiratoire">
+		<rdfs:label>Respiratoire</rdfs:label>
+	</owl:Class>
+	<owl:Class rdf:about="http://uy1/m1/groupe22#Dermatologiques">
+		<rdfs:label>Dermatologiques</rdfs:label>
+	</owl:Class>
+	<owl:Class rdf:about="http://uy1/m1/groupe22#Rare">
+		<rdfs:label>Rare</rdfs:label>
+	</owl:Class>
+	<owl:Class rdf:about="http://uy1/m1/groupe22#Genetique">
+		<rdfs:label>Genetique</rdfs:label>
+	</owl:Class>
+	<owl:Class rdf:about="http://uy1/m1/groupe22#Digestive">
+		<rdfs:label>Digestive</rdfs:label>
+	</owl:Class>
+	
+	
+	<!-- Maladies -->
+	
+	<!-- Maladies contagieuses -->
+	<owl:Class rdf:about="http://uy1/m1/groupe22#Grippe">
+		<rdfs:subClassOf rdf:resource="http://uy1/m1/groupe22#Desease"/>
+		<!-- Informations sur la maladie -->
+		 <rdfs:label>Grippe</rdfs:label>
+		 <rdfs:description>
+				Due à l’Influenzavirus, elle se transmet comme 
+				la rhinopharyngite, soit directement (postillons, bises, poignées de main…)
+				soit indirectement (portes de rames de métro, poignées de porte, boutons d’ascenseur…).
+		 </rdfs:description>
+		 <rdfs:type rdf:resource="http://uy1/m1/groupe22#Contagieuse"/>
+	</owl:Class>
+	
+	<owl:Class rdf:about="http://uy1/m1/groupe22#Varicelle">
+		<rdfs:subClassOf rdf:resource="http://uy1/m1/groupe22#Desease"/>
+		<!-- Informations sur la maladie -->
+		 <rdfs:label>Varicelle</rdfs:label>
+		 <rdfs:description>
+			La contagion se fait par l’intermédiaire de vésicules contenant 
+			le virus Varicelle/Zona, par contact cutané direct ou par le 
+			liquide qu’elles contiennent ou par voie aérienne (toux, postillons, éternuements).
+			La contamination se fait pendant les 24 à 48 heures précédant les premiers boutons 
+			et jusqu'à ce que les boutons soient recouverts d'une croûte.
+		 </rdfs:description>
+		 <rdfs:type rdf:resource="http://uy1/m1/groupe22#Contagieuse"/>
+	</owl:Class>
+	
+	<owl:Class rdf:about="http://uy1/m1/groupe22#Vih">
+		<rdfs:subClassOf rdf:resource="http://uy1/m1/groupe22#Desease"/>
+		<!-- Informations sur la maladie -->
+		 <rdfs:label>VIH</rdfs:label>
+		 <rdfs:description>
+			Le VIH (Virus de l’Immunodéficience Humaine), est une 
+			maladie contagieuse. Il se transmet via les rapports 
+			sexuels non protégés incluant la pénétration vaginale, 
+			anale ou buccale; le contact avec du sang contaminé 
+			(toxicomanie ou personnel médical) ou de la mère à 
+			l’enfant en cas d’absence de traitement de la mère,
+			notamment pendant l’allaitement.
+		 </rdfs:description>
+		 <rdfs:type rdf:resource="http://uy1/m1/groupe22#Contagieuse"/>
+	</owl:Class>
+	
+	<owl:Class rdf:about="http://uy1/m1/groupe22#HepatiteB">
+		<rdfs:subClassOf rdf:resource="http://uy1/m1/groupe22#Desease"/>
+		<!-- Informations sur la maladie -->
+		 <rdfs:label>L'Hepatite B</rdfs:label>
+		 <rdfs:description>
+			L'hépatite B est due à un virus (VHB). Il s’agit d’une
+			des hépatites virales les plus contagieuses. La transmission 
+			du virus se fait lors de rapports sexuels, de transfusions 
+			sanguines à risques, d’un accouchement (mère contaminée qui 
+			le transmet à son enfant) ou avec du matériel contaminé chez 
+			les toxicomanes ou le personnel de santé ou via un contact 
+			étroit avec une personne infectée.
+		 </rdfs:description>
+		 <rdfs:type rdf:resource="http://uy1/m1/groupe22#Contagieuse"/>
+	</owl:Class>
+	
+	<owl:Class rdf:about="http://uy1/m1/groupe22#HepatiteC">
+		<rdfs:subClassOf rdf:resource="http://uy1/m1/groupe22#Desease"/>
+		<!-- Informations sur la maladie -->
+		 <rdfs:label>L'Hepatite C</rdfs:label>
+		 <rdfs:description>
+			L’hépatite C est due à un virus (VHC). Il se transmet 
+			essentiellement par voie sanguine et rarement par voie sexuelle.
+		 </rdfs:description>
+		 <rdfs:type rdf:resource="http://uy1/m1/groupe22#Contagieuse"/>
+	</owl:Class>
+	
+	<owl:Class rdf:about="http://uy1/m1/groupe22#Rhinopharyngite">
+		<rdfs:subClassOf rdf:resource="http://uy1/m1/groupe22#Desease"/>
+		<!-- Informations sur la maladie -->
+		 <rdfs:label>La rhinopharyngite</rdfs:label>
+		 <rdfs:description>
+			Plus de 100 virus peuvent la causer. Ils se transmettent directement 
+			par la salive, les postillons, les crachats, les éternuements ou 
+			indirectement par des objets souillés (poignées de porte, téléphones etc…).
+		 </rdfs:description>
+		 <rdfs:type rdf:resource="http://uy1/m1/groupe22#Contagieuse"/>
+	</owl:Class>
+	
+	<!-- Maladies cardiovasculaires -->
+	<owl:Class rdf:about="http://uy1/m1/groupe22#Infarctus">
+		<rdfs:subClassOf rdf:resource="http://uy1/m1/groupe22#Desease"/>
+		<!-- Informations sur la maladie -->
+		 <rdfs:label>Infarctus du myocarde(IDM)</rdfs:label>
+		 <rdfs:description>
+			L’infarctus du myocarde est une nécrose du myocarde se manifestant 
+			lorsqu’une ou plusieurs artères coronaires s’obstruent. De ce fait 
+			une partie du cœur n’est plus approvisionnée en sang et en oxygène
+		 </rdfs:description>
+		 <rdfs:type rdf:resource="http://uy1/m1/groupe22#Cardiovasculaires"/>
+	</owl:Class>
+	
+	<owl:Class rdf:about="http://uy1/m1/groupe22#Avc">
+		<rdfs:subClassOf rdf:resource="http://uy1/m1/groupe22#Desease"/>
+		<!-- Informations sur la maladie -->
+		 <rdfs:label>Accident vasculaire cérébral(AVC)</rdfs:label>
+		 <rdfs:description>
+			L’accident vasculaire cérébral (AVC) est l’arrêt brutal de la 
+			circulation sanguine dans une ou plusieurs parties du cerveau. 
+			La rapidité de prise en charge est essentielle : cet accident 
+			neurologique constitue la première cause de handicap moteur de
+			l’adulte
+		 </rdfs:description>
+		 <rdfs:type rdf:resource="http://uy1/m1/groupe22#Cardiovasculaires"/>
+		 
+	</owl:Class>
+	
+	<owl:Class rdf:about="http://uy1/m1/groupe22#Arteriosclerose">
+		<rdfs:subClassOf rdf:resource="http://uy1/m1/groupe22#Desease"/>
+		<!-- Informations sur la maladie -->
+		 <rdfs:label>Artériosclérose</rdfs:label>
+		 <rdfs:description>
+			L’artériosclérose est un épaississement et un durcissement de 
+			la paroi des artères.
+		 </rdfs:description>
+		 <rdfs:type rdf:resource="http://uy1/m1/groupe22#Cardiovasculaires"/>
+	</owl:Class>
+	
+	<owl:Class rdf:about="http://uy1/m1/groupe22#Angine">
+		<rdfs:subClassOf rdf:resource="http://uy1/m1/groupe22#Desease"/>
+		<!-- Informations sur la maladie -->
+		 <rdfs:label>Angine de poitrine – Angor</rdfs:label>
+		 <rdfs:description>
+			L’angine de poitrine décrit une douleur violente localisée 
+			dans la poitrine.
+		 </rdfs:description>
+		 <rdfs:type rdf:resource="http://uy1/m1/groupe22#Cardiovasculaires"/>
+	</owl:Class>
+	
+	<owl:Class rdf:about="http://uy1/m1/groupe22#InsuffisanceCardiaque">
+		<rdfs:subClassOf rdf:resource="http://uy1/m1/groupe22#Desease"/>
+		<!-- Informations sur la maladie -->
+		 <rdfs:label>Insuffisance cardiaque</rdfs:label>
+		 <rdfs:description>
+			On parle d’insuffisance cardiaque lorsque le cœur n’est plus 
+			capable d’effectuer correctement son travail de pompe. Il est 
+			possible d’agir sur certains facteurs de risque (tabagisme, surpoids, diabète…) 
+			en modifiant durablement ses habitudes de vie.
+		 </rdfs:description>
+		 <rdfs:type rdf:resource="http://uy1/m1/groupe22#Cardiovasculaires"/>
+	</owl:Class>
+	
+	<owl:Class rdf:about="http://uy1/m1/groupe22#ArythmieCardiaque">
+		<rdfs:subClassOf rdf:resource="http://uy1/m1/groupe22#Desease"/>
+		<!-- Informations sur la maladie -->
+		 <rdfs:label>Arythmie cardiaque</rdfs:label>
+		 <rdfs:description>
+			L’arythmie cardiaque est un trouble du rythme cardiaque. Il en existe
+			plusieurs types, de gravité variable.
+		 </rdfs:description>
+		 <rdfs:type rdf:resource="http://uy1/m1/groupe22#Cardiovasculaires"/>
+	</owl:Class>
+	
+	<owl:Class rdf:about="http://uy1/m1/groupe22#Hypertension">
+		<rdfs:subClassOf rdf:resource="http://uy1/m1/groupe22#Desease"/>
+		<!-- Informations sur la maladie -->
+		 <rdfs:label>Hypertension artérielle</rdfs:label>
+		 <rdfs:description>
+			L’hypertension artérielle est une augmentation de la pression 
+			du sang dans les artères.
+		 </rdfs:description>
+		 <rdfs:type rdf:resource="http://uy1/m1/groupe22#Cardiovasculaires"/>
+	</owl:Class>
+	
+	<!-- Maladies cancereuse-->
+	<owl:Class rdf:about="http://uy1/m1/groupe22#CancerPoumon">
+		<rdfs:subClassOf rdf:resource="http://uy1/m1/groupe22#Desease"/>
+		<!-- Informations sur la maladie -->
+		 <rdfs:label>Cancer du poumon</rdfs:label>
+		 <rdfs:description>
+			Le cancer du poumon, appelé aussi cancer bronchique, est une 
+			des maladies des cellules des bronches ou, plus rarement, des 
+			cellules qui tapissent les alvéoles pulmonaires. Il se développe
+			à partir d’une cellule initialement normale qui se transforme, 
+			sous l’effet d’agressions comme le tabac, et se multiplie de façon anarchique. 
+		 </rdfs:description>
+		 <rdfs:type rdf:resource="http://uy1/m1/groupe22#Cancer"/>
+	</owl:Class>
+	
+	<owl:Class rdf:about="http://uy1/m1/groupe22#CancerSein">
+		<rdfs:subClassOf rdf:resource="http://uy1/m1/groupe22#Desease"/>
+		<!-- Informations sur la maladie -->
+		 <rdfs:label>Cancer du sein</rdfs:label>
+		 <rdfs:description>
+			Avec environ 54 062 nouvelles personnes touchées chaque année, le cancer du sein 
+			est le plus répandu des cancers féminins. Près d'une femme sur neuf sera concernée 
+			au cours de sa vie, le risque augmentant avec l'âge. Moins de 10% des cancers du 
+			sein surviennent avant 40 ans. L’incidence augmente ensuite régulièrement jusqu’à 65 ans. 
+			Ceci, associé au fait que la densité de la glande mammaire est moins importante à cet âge, 
+			justifie le choix de la tranche d’âge de 50 à 74 ans retenue pour le dépistage organisé.
+			Les hommes peuvent également développer un cancer du sein. Ces cas sont cependant rares, 
+			puisqu'ils représentent seulement 1% du nombre total de cancers du sein et 0,5% des cancers
+			masculins
+		 </rdfs:description>
+		 <rdfs:type rdf:resource="http://uy1/m1/groupe22#Cancer"/>
+	</owl:Class>
+	
+	<owl:Class rdf:about="http://uy1/m1/groupe22#CancerProstate">
+		<rdfs:subClassOf rdf:resource="http://uy1/m1/groupe22#Desease"/>
+		<!-- Informations sur la maladie -->
+		 <rdfs:label>Cancer de la prostate</rdfs:label>
+		 <rdfs:description>
+			Un cancer de la prostate se développe à partir d'une cellule normale, qui se transforme et 
+			se multiplie de façon anarchique formant une masse appelée tumeur. La tumeur est d'abord 
+			limitée à la prostate. Avec le temps, la tumeur grossit et peut s'étendre au-delà de la 
+			capsule prostatique, enveloppe qui sépare la prostate des tissus voisins. Dans 90% des cas, 
+			les cancers de la prostate sont des adénocarcinomes, c'est-à-dire qui prennent naissance 
+			dans les cellules glandulaires de la prostate.
+		 </rdfs:description>
+		 <rdfs:type rdf:resource="http://uy1/m1/groupe22#Cancer"/>
+	</owl:Class>
+	
+	<owl:Class rdf:about="http://uy1/m1/groupe22#CancerColonRectum">
+		<rdfs:subClassOf rdf:resource="http://uy1/m1/groupe22#Desease"/>
+		<!-- Informations sur la maladie -->
+		 <rdfs:label>Cancer du colon et du rectum</rdfs:label>
+		 <rdfs:description>
+			Le cancer du côlon est une maladie des cellules qui tapissent l'intérieur du côlon ou du rectum. 
+			Il se développe à partir d'une cellule initialement normale qui se transforme et se multiplie de 
+			façon anarchique, à la suite d'une mutation. Il met du temps à se développer et peut être
+			efficacement pris en charge grâce à un dépistage précoce. Dépisté à temps, il peut être guéri 
+			dans 9 cas sur 10.
+		 </rdfs:description>
+		 <rdfs:type rdf:resource="http://uy1/m1/groupe22#Cancer"/>
+	</owl:Class>
+	
+	<owl:Class rdf:about="http://uy1/m1/groupe22#CancerRein">
+		<rdfs:subClassOf rdf:resource="http://uy1/m1/groupe22#Desease"/>
+		<!-- Informations sur la maladie -->
+		 <rdfs:label>Cancer du rein</rdfs:label>
+		 <rdfs:description>
+			Les reins situés de part et d’autre de la colonne vertébrale, sous les dernières côtes, ont pour
+			principale fonction la filtration du sang, en éliminant par les urines l’excès d’eau et de sels 
+			mais aussi un certain nombre de substances comme certains médicaments ou la nicotine. 
+			Le cancer du rein, essentiellement des adénocarcinomes ou carcinomes à cellules claires, 
+			représente de 2 à 3% de l’ensemble des cancers.Le principal facteur de risque est le tabagisme, 
+			le risque étant d’autant plus important que le tabagisme est important et ancien. 
+			L’obésité associée à une hypertension artérielle semble également augmenter le risque. 
+			Enfin, il existe des formes familiales liées à des mutations génétiques. 
+		 </rdfs:description>
+		 <rdfs:type rdf:resource="http://uy1/m1/groupe22#Cancer"/>
+	</owl:Class>
+	
+	<owl:Class rdf:about="http://uy1/m1/groupe22#CancerFoie">
+		<rdfs:subClassOf rdf:resource="http://uy1/m1/groupe22#Desease"/>
+		<!-- Informations sur la maladie -->
+		 <rdfs:label>Cancer du foie</rdfs:label>
+		 <rdfs:description>
+			Le cancer primitif du foie ou carcinome hépatocellulaire (ou encore hépatocarcinome) est une 
+			tumeur maligne, généralement unique, il peut survenir spontanément mais plus souvent survient 
+			au terme de l’évolution d’une maladie chronique, qu’il s’agisse d’une hépatite virale B ou C 
+			devenue chronique, ou d’une cirrhose alcoolique. Les cancers secondaires du foie sont 20 à 25 
+			fois plus nombreux.
+		 </rdfs:description>
+		 <rdfs:type rdf:resource="http://uy1/m1/groupe22#Cancer"/>
+	</owl:Class>
+	
+	<owl:Class rdf:about="http://uy1/m1/groupe22#CancerCerveau">
+		<rdfs:subClassOf rdf:resource="http://uy1/m1/groupe22#Desease"/>
+		<!-- Informations sur la maladie -->
+		 <rdfs:label>Cancer du cerveau</rdfs:label>
+		 <rdfs:description>
+			Une tumeur cancéreuse cérébrale est un amas de cellules cancéreuses au niveau du cerveau.Il y 
+			a différents types de cancers du cerveau : tumeur primaire ou secondaire (métastase) et selon 
+			l'origine de la cellule cancéreuse (cerveau, tronc cérébral ou méninges).
+			Les causes des tumeurs cancéreuses cérébrales restent aujourd'hui inconnues.Les signes cliniques 
+			dépendent essentiellement de la zone du cerveau atteinte. Aucun n'est spécifique d'un cancer : 
+			c'est leur persistance qui doit alerter.
+		 </rdfs:description>
+		 <rdfs:type rdf:resource="http://uy1/m1/groupe22#Cancer"/>
+	</owl:Class>
+	
+	<owl:Class rdf:about="http://uy1/m1/groupe22#CancerPancreas">
+		<rdfs:subClassOf rdf:resource="http://uy1/m1/groupe22#Desease"/>
+		<!-- Informations sur la maladie -->
+		 <rdfs:label>Cancer du pancréas</rdfs:label>
+		 <rdfs:description>
+			Une consommation chronique et excessive d'alcool est sans doute le facteur de risque le plus sérieux. 
+			Toutefois, ce cancer peut survenir en l'absence de tout facteur de risque connu.Les signes cliniques 
+			sont généralement tardifs, dominés par l'altération de l'état général, les douleurs abdominales, 
+			éventuellement un ictère.Le pronostic dépend de l'étendue de la tumeur, de son type et de la qualité 
+			de l'acte opératoire.Le traitement repose avant tout sur la chirurgie ; une chimiothérapie peut être 
+			proposée en complément, de même qu'une radiothérapie, notamment à visée palliative. 
+		 </rdfs:description>
+		 <rdfs:type rdf:resource="http://uy1/m1/groupe22#Cancer"/>
+	</owl:Class>
+	
+	<!-- Maladies Respiratoire-->
+	<owl:Class rdf:about="http://uy1/m1/groupe22#Pneumonie">
+		<rdfs:subClassOf rdf:resource="http://uy1/m1/groupe22#Desease"/>
+		<!-- Informations sur la maladie -->
+		 <rdfs:label>La pneumonie</rdfs:label>
+		 <rdfs:description>
+			La pneumonie est une infection pulmonaire d’origine bactérienne ou virale, potentiellement mortelle. 
+			Elle peut être provoquée par des virus, des bactéries ou des champignons. Selon le germe en cause, 
+			elles peuvent être bénignes ou au contraire très graves.
+		 </rdfs:description>
+		 <rdfs:type rdf:resource="http://uy1/m1/groupe22#Respiratoire"/>
+	</owl:Class>
+	
+	<owl:Class rdf:about="http://uy1/m1/groupe22#Bronchite">
+		<rdfs:subClassOf rdf:resource="http://uy1/m1/groupe22#Desease"/>
+		<!-- Informations sur la maladie -->
+		 <rdfs:label>La Bronchite</rdfs:label>
+		 <rdfs:description>
+			La bronchite aiguë infectieuse vous donne mal à la gorge, une vilaine toux, de la fièvre, des 
+			courbatures ou encore des maux de tête ! Synonyme d'inflammation des bronches, cette maladie 
+			est pourtant banale et parfaitement bénigne. Inutile donc de s'affoler, une simple surveillance 
+			suffit généralement pour qu'elle disparaisse en quelques jours.
+		 </rdfs:description>
+		 <rdfs:type rdf:resource="http://uy1/m1/groupe22#Respiratoire"/>
+	</owl:Class>
+	
+	<owl:Class rdf:about="http://uy1/m1/groupe22#Asthme">
+		<rdfs:subClassOf rdf:resource="http://uy1/m1/groupe22#Desease"/>
+		<!-- Informations sur la maladie -->
+		 <rdfs:label>Asthme</rdfs:label>
+		 <rdfs:description>
+			L'asthme se traduit par des spasmes des muscles de la paroi des voies aériennes, qui rendent 
+			la respiration difficile. Toux, sifflements, gêne respiratoire... Les symptômes de l'asthme sont 
+			bien connus, mais ils sont peu caractéristiques.
+		 </rdfs:description>
+		 <rdfs:type rdf:resource="http://uy1/m1/groupe22#Respiratoire"/>
+	</owl:Class>
+	
+	<owl:Class rdf:about="http://uy1/m1/groupe22#Sarcoidose">
+		<rdfs:subClassOf rdf:resource="http://uy1/m1/groupe22#Desease"/>
+		<!-- Informations sur la maladie -->
+		 <rdfs:label>La sarcoidose</rdfs:label>
+		 <rdfs:description>
+			La sarcoïdose, également appelée maladie de Besnier-Boeck-Schaumann ou lymphogranulomatose, est
+			une maladie inflammatoire qui peut toucher différents organes, mais affecte plus particulièrement 
+			les poumons.Il semblerait qu'elle soit provoquée par une réaction inappropriée de l'organisme à un 
+			agent agresseur, mais ce dernier n'est pas connu pour le moment. Le fait que les poumons soient 
+			prioritairement atteints peut cependant laisser penser qu'il s'agit d'un agresseur inhalé par le 
+			patient, même si pour l'instant cela n'a pas été démontré.
+		 </rdfs:description>
+		 <rdfs:type rdf:resource="http://uy1/m1/groupe22#Respiratoire"/>
+	</owl:Class>
+	
+	<owl:Class rdf:about="http://uy1/m1/groupe22#FibrosePulmonaire">
+		<rdfs:subClassOf rdf:resource="http://uy1/m1/groupe22#Desease"/>
+		<!-- Informations sur la maladie -->
+		 <rdfs:label>La Fibrose pulmonaire idiopathique</rdfs:label>
+		 <rdfs:description>
+			Maladie rare de cause inconnue, la fibrose pulmonaire idiopathique provoque une insuffisance
+			respiratoire dont l'impact sur la qualité et l'espérance de vie est important. De plus, cette 
+			pathologie est très difficile à traiter efficacement. Mais les médecins bénéficient depuis peu d'un
+			nouveau médicament autorisé dans cette indication. La fibrose pulmonaire idiopathique (FPI) se 
+			caractérise par une altération des poumons qui se rigidifient (fibrose) et ne peuvent plus 
+			correctement assurer la respiration. Cette maladie touche une personne sur 2 500 à 7 000, selon 
+			les estimations, soit plus de 100 000 patients en Europe.
+		 </rdfs:description>
+		 <rdfs:type rdf:resource="http://uy1/m1/groupe22#Respiratoire"/>
+	</owl:Class>
+	
+	<!-- Maladies dermatologiques-->
+	<owl:Class rdf:about="http://uy1/m1/groupe22#Acne">
+		<rdfs:subClassOf rdf:resource="http://uy1/m1/groupe22#Desease"/>
+		<!-- Informations sur la maladie -->
+		 <rdfs:label>L'Acné</rdfs:label>
+		 <rdfs:description>
+			C’est la première cause de consultation chez le dermatologue. En effet, les personnes atteintes 
+			souffrent beaucoup psychologiquement du fait de l’altération physique provoquée par la maladie.C’est 
+			une maladie du follicule pilosébacé (poil + glande sébacée). En effet, à la base de chaque poil se 
+			trouve une glande sébacée qui secrète du sébum. Or lorsque la glande sébacée est touchée par l’acné, 
+			elle est bouchée par un sébum devenu trop épais ou sécrété en trop grosse quantité. La maladie 
+			s’étend alors sur le visage, le torse, le dos et les avant-bras essentiellement.
+		 </rdfs:description>
+		 <rdfs:type rdf:resource="http://uy1/m1/groupe22#Dermatologique"/>
+	</owl:Class>
+	
+	<owl:Class rdf:about="http://uy1/m1/groupe22#Gale">
+		<rdfs:subClassOf rdf:resource="http://uy1/m1/groupe22#Desease"/>
+		<!-- Informations sur la maladie -->
+		 <rdfs:label>La Gale</rdfs:label>
+		 <rdfs:description>
+			La gale humaine est une affection contagieuse qui se transmet par contact humain direct. Elle est 
+			due à un parasite qui pénètre la couche superficielle de la peau. Contrairement à certaines idées 
+			reçues, elle touche toutes les tranches d'âge, toutes les populations et tous les milieux 
+			socio-économiques. On estime qu'environ 300 millions de personnes sont concernées dans le monde.
+		 </rdfs:description>
+		 <rdfs:type rdf:resource="http://uy1/m1/groupe22#Dermatologique"/>
+	</owl:Class>
+	
+	<owl:Class rdf:about="http://uy1/m1/groupe22#Poux">
+		<rdfs:subClassOf rdf:resource="http://uy1/m1/groupe22#Desease"/>
+		<!-- Informations sur la maladie -->
+		 <rdfs:label>Les poux</rdfs:label>
+		 <rdfs:description>
+			La pédiculose de la tête, du corps ou du pubis est due respectivement à trois variétés de poux dont
+			les modes de transmission sont spécifiques. Les démangeaisons communes à l'ensemble de ces 
+			pédiculoses sont liées aux piqûres réalisées par ces insectes pour se nourrir.Les poux sont des 
+			insectes hématophages, c'est-à-dire qu'ils se nourrissent de sang humain. Il en existe 2 espèces :
+			Pediculus humanus variété capitis, responsable de la pédiculose de la tête;
+			Pediculus humanus variété corporis, responsable de la pédiculose corporelle ;
+		 </rdfs:description>
+		 <rdfs:type rdf:resource="http://uy1/m1/groupe22#Dermatologique"/>
+	</owl:Class>
+	
+	<owl:Class rdf:about="http://uy1/m1/groupe22#Pellicule">
+		<rdfs:subClassOf rdf:resource="http://uy1/m1/groupe22#Desease"/>
+		<!-- Informations sur la maladie -->
+		 <rdfs:label>Les pellicules</rdfs:label>
+		 <rdfs:description>
+			Les pellicules apparaissent à l'adolescence au moment de la puberté lorsque débute la sécrétion de
+			sébum (film lipidique protecteur produit par les glandes sébacées) responsable des « cheveux gras ».
+			Cette affection chronique récidivante touche un adulte sur deux. Les hommes semblent plus fréquemment 
+			atteints que les femmes, sans doute sous l'effet des hormones mâles appelées androgènes. Les enfants 
+			en sont donc exemptés. Si toutefois on observe des pellicules à cet âge, cela peut être le signe 
+			d'une maladie sous-jacente comme un psoriasis ou une teigne nécessitant une consultation dans les 
+			plus brefs délais.
+		 </rdfs:description>
+		 <rdfs:type rdf:resource="http://uy1/m1/groupe22#Dermatologique"/>
+	</owl:Class>
+	
+	<owl:Class rdf:about="http://uy1/m1/groupe22#Verrue">
+		<rdfs:subClassOf rdf:resource="http://uy1/m1/groupe22#Desease"/>
+		<!-- Informations sur la maladie -->
+		 <rdfs:label>Les verrues</rdfs:label>
+		 <rdfs:description>
+			Revêtant de multiples aspects suivant leur localisation, les verrues cutanées affectent environ un 
+			quart des enfants d'âge scolaire. Il s'agit d'une infection cutanée bénigne et peu contagieuse liée 
+			à la présence d'un papillomavirus à la surface de la peau. Dans la grande majorité des cas, les 
+			verrues disparaissent spontanément dans les 2 ans.Les verrues, encore appelées papillomes viraux, 
+			sont des lésions cutanées bénignes, c'est-à-dire sans gravité, correspondant à des excroissances de 
+			peau. Elles sont liées à l'infection de la peau par un virus appelé « human papillomavirus » ou HPV 
+			dont il existe de nombreux types différents. On distingue plusieurs sortes de verrues en fonction de 
+			leur aspect, de leur localisation sur le corps et du type de virus HPV responsable. On distingue 
+			ainsi principalement les verrues vulgaires, les verrues plantaires, les verrues filiformes et les 
+			verrues planes.
+		 </rdfs:description>
+		 <rdfs:type rdf:resource="http://uy1/m1/groupe22#Dermatologique"/>
+	</owl:Class>
+	
+	<owl:Class rdf:about="http://uy1/m1/groupe22#Vitiligo">
+		<rdfs:subClassOf rdf:resource="http://uy1/m1/groupe22#Desease"/>
+		<!-- Informations sur la maladie -->
+		 <rdfs:label>Le vitiligo</rdfs:label>
+		 <rdfs:description>
+			Le vitiligo se manifeste par des plaques blanches qui correspondent à des zones de peau où les 
+			cellules qui fabriquent la mélanine (le principal pigment de la peau) ont disparu. Ces cellules 
+			s'appellent les mélanocytes. Les plaques de vitiligo sont généralement asymptomatiques, c'est-à-dire 
+			qu'elles ne grattent pas, ne brûlent pas et ne font pas mal. Elles ne sont jamais contagieuses
+		 </rdfs:description>
+		 <rdfs:type rdf:resource="http://uy1/m1/groupe22#Dermatologique"/>
+	</owl:Class>
+	
+	<!-- Maladies rares-->
+	<owl:Class rdf:about="http://uy1/m1/groupe22#Amaurose">
+		<rdfs:subClassOf rdf:resource="http://uy1/m1/groupe22#Desease"/>
+		<!-- Informations sur la maladie -->
+		 <rdfs:label>L'Amaurose</rdfs:label>
+		 <rdfs:description>
+			L’amaurose congénitale de Leber (ACL) est une maladie de la rétine (rétinopathie) présente dès la 
+			naissance (congénitale). Elle provoque une dégradation (dystrophie) globale et évolutive de la rétine.
+			C’est la forme la plus sévère de dystrophie rétinienne.
+		 </rdfs:description>
+		 <rdfs:type rdf:resource="http://uy1/m1/groupe22#Rare"/>
+	</owl:Class>
+	
+	<owl:Class rdf:about="http://uy1/m1/groupe22#Achalasie">
+		<rdfs:subClassOf rdf:resource="http://uy1/m1/groupe22#Desease"/>
+		<!-- Informations sur la maladie -->
+		 <rdfs:label>L'achalasie</rdfs:label>
+		 <rdfs:description>
+			Maladie très rare de l’œsophage, l’achalasie se manifeste par des difficultés à avaler (dysphagie) 
+			qui s’aggravent progressivement. Le délai de diagnostic est en général assez long car cette maladie 
+			est méconnue et que la dysphagie peut évoquer d’autres diagnostics.
+		 </rdfs:description>
+		 <rdfs:type rdf:resource="http://uy1/m1/groupe22#Rare"/>
+	</owl:Class>
+	
+	<owl:Class rdf:about="http://uy1/m1/groupe22#Microcephalie">
+		<rdfs:subClassOf rdf:resource="http://uy1/m1/groupe22#Desease"/>
+		<!-- Informations sur la maladie -->
+		 <rdfs:label>La microcephalie</rdfs:label>
+		 <rdfs:description>
+			Normalement, au cours de la grossesse, la tête du bébé grossit au fur et à mesure que se développe le
+			cerveau. Si ce dernier ne se développe pas suffisamment ou s'il s'arrête de grossir, la tête va faire 
+			de même et sera donc plus petite que la normale."La microcéphalie n'est pas une maladie en tant que 
+			telle, c'est un symptôme traduisant une insuffisance de croissance cérébrale".
+		 </rdfs:description>
+		 <rdfs:type rdf:resource="http://uy1/m1/groupe22#Rare"/>
+	</owl:Class>
+	
+	<owl:Class rdf:about="http://uy1/m1/groupe22#Progeria">
+		<rdfs:subClassOf rdf:resource="http://uy1/m1/groupe22#Desease"/>
+		<!-- Informations sur la maladie -->
+		 <rdfs:label>La progeria</rdfs:label>
+		 <rdfs:description>
+			Extrêmement rare, la progeria entraîne un vieillissement accéléré, de jeunes enfants se trouvant 
+			ainsi frappés par des maladies de l'âge.
+			Dans sa forme classique (il existe de très nombreuses pathologies progéroïdes apparentées), la 
+			progeria est due à la survenue d'une mutation spécifique de ce gène appelée "p.G608G". Cette mutation 
+			survient dans les cellules germinales du père ou de la mère (spermatozoïde ou ovule) - vraisemblablement
+			à cause d'un âge avancé - de façon tout à fait aléatoire sans qu'on puisse la prévenir. L'enfant malade
+			porte alors cette mutation dans toutes ses cellules.
+		 </rdfs:description>
+		 <rdfs:type rdf:resource="http://uy1/m1/groupe22#Rare"/>
+	</owl:Class>
+	
+	<owl:Class rdf:about="http://uy1/m1/groupe22#Amylose">
+		<rdfs:subClassOf rdf:resource="http://uy1/m1/groupe22#Desease"/>
+		<!-- Informations sur la maladie -->
+		 <rdfs:label>L'Amylose</rdfs:label>
+		 <rdfs:description>
+			Sous le terme d’amylose sont regroupées plusieurs pathologies ayant pour point commun la présence 
+			d’un dépôt de protéines (substance amyloïde) qui altère le fonctionnement normal des organes atteints.
+			Le dépôt peut être :Localisé et engendrer peu de symptômes ;Diffus et responsable de l’atteinte de plus
+			organes aboutissant à une défaillance multiviscérale.Certaines amyloses sont primitives 
+			(c’est-à-dire sans rapport avec une maladie préexistante) et d’autres sont secondaires à une inflammation.
+			La quasi-totalité des organes peut être concernée. Les principaux sont le rein, le cœur, de tube 
+			digestif, le foie, la peau, les nerfs et l’œil.
+		 </rdfs:description>
+		 <rdfs:type rdf:resource="http://uy1/m1/groupe22#Rare"/>
+	</owl:Class>
+	
+	<owl:Class rdf:about="http://uy1/m1/groupe22#Botulisme">
+		<rdfs:subClassOf rdf:resource="http://uy1/m1/groupe22#Desease"/>
+		<!-- Informations sur la maladie -->
+		 <rdfs:label>Le botulisme</rdfs:label>
+		 <rdfs:description>
+			Le botulisme est une maladie paralytique grave, causée par une toxine produite par la bactérie 
+			Clostridium botulinum. Même cette pathologie est rare, sa mortalité reste élevée quand le traitement 
+			n’est pas immédiat. Sur les sept types de botulisme connus aujourd’hui, quatre, soit les types A, B,
+			E et plus rarement F affectent l’homme.
+		 </rdfs:description>
+		 <rdfs:type rdf:resource="http://uy1/m1/groupe22#Rare"/>
+	</owl:Class>
+	
+	<!-- Maladies genetiques-->
+	<owl:Class rdf:about="http://uy1/m1/groupe22#Hemophilie">
+		<rdfs:subClassOf rdf:resource="http://uy1/m1/groupe22#Desease"/>
+		<!-- Informations sur la maladie -->
+		 <rdfs:label>L'hemophilie</rdfs:label>
+		 <rdfs:description>
+			Maladie du sang grave et rare, l'hémophilie est d'origine génétique. Portée par un chromosome sexuel,
+			elle touche quasi-essentiellement les hommes chez lesquels elle favorise les hémorragies. Mais de 
+			nombreuses idées reçues circulent sur ce trouble de la coagulation.
+		 </rdfs:description>
+		 <rdfs:type rdf:resource="http://uy1/m1/groupe22#Genetique"/>
+	</owl:Class>
+	
+	<owl:Class rdf:about="http://uy1/m1/groupe22#Drepanocytose">
+		<rdfs:subClassOf rdf:resource="http://uy1/m1/groupe22#Desease"/>
+		<!-- Informations sur la maladie -->
+		 <rdfs:label>Drepanocytose ou anemie falciforme</rdfs:label>
+		 <rdfs:description>
+			Aussi connue sous le nom d'anémie falciforme, la drépanocytose est une maladie génétique liée à une
+			anomalie de l'hémoglobine, constituant des globules rouges. Le problème est que cette hémoglobine, 
+			qui constitue nos globules rouges, se gélifie et, du coup, les globules rouges n'arrivent plus à 
+			passer les petits capillaires. Un problème qui peut être amplifié par le froid et l'altitude.
+			Elle se manifeste par une anémie (fatigue, vertiges, essoufflements…), une sensibilité accrue aux 
+			infections et des crises douloureuses liées à une mauvaise circulation sanguine. Les manifestations 
+			peuvent varier d'une personne à l'autre et dans le temps chez une même personne.
+		 </rdfs:description>
+		 <rdfs:type rdf:resource="http://uy1/m1/groupe22#Genetique"/>
+	</owl:Class>
+	
+	<owl:Class rdf:about="http://uy1/m1/groupe22#Hemochromatose">
+		<rdfs:subClassOf rdf:resource="http://uy1/m1/groupe22#Desease"/>
+		<!-- Informations sur la maladie -->
+		 <rdfs:label>L'hemochromatose</rdfs:label>
+		 <rdfs:description>
+			L'hémochromatose est une maladie génétique héréditaire, qui se caractérise par l'absorption anormale
+			du fer contenu dans les aliments, par le tube digestif. A terme, ce fer s'accumule dans tous les 
+			organes et finit par les endommager. Le problème, c'est que les premiers signes de cette maladie sont 
+			souvent difficilement identifiables. De plus, la méconnaissance de cette maladie ne facilite pas son 
+			diagnostic précoce.
+		 </rdfs:description>
+		 <rdfs:type rdf:resource="http://uy1/m1/groupe22#Genetique"/>
+	</owl:Class>
+	
+	<owl:Class rdf:about="http://uy1/m1/groupe22#DysplasieHanche">
+		<rdfs:subClassOf rdf:resource="http://uy1/m1/groupe22#Desease"/>
+		<!-- Informations sur la maladie -->
+		 <rdfs:label>La Dysplasie de la hanche</rdfs:label>
+		 <rdfs:description>
+			Une dysplasie de la hanche est une anomalie congénitale. C'est un développement anormal de la hanche
+			lors de la croissance du foetus dans le ventre de sa maman qui provoque cette instabilité, que seules 
+			une radiographie et une échographie peuvent rendre visible.
+		 </rdfs:description>
+		 <rdfs:type rdf:resource="http://uy1/m1/groupe22#Genetique"/>
+	</owl:Class>
+	
+	<owl:Class rdf:about="http://uy1/m1/groupe22#SyndromeMarfan">
+		<rdfs:subClassOf rdf:resource="http://uy1/m1/groupe22#Desease"/>
+		<!-- Informations sur la maladie -->
+		 <rdfs:label>Le syndrome de Marfan</rdfs:label>
+		 <rdfs:description>
+			Le syndrome de Marfan est une maladie génétique protéiforme, qui peut rester silencieuse toute une vie
+			avant d'être fatale si elle n'est pas traitée. En revanche, diagnostiquée et prise en charge assez tôt,
+			elle n'empêche pas de mener une vie presque normale.
+			Cette pathologie génétique héréditaire est due à la défaillance d'un gène, qui entraîne une production
+			anormale de fibrilline, une protéine indispensable aux tissus de soutien de l'organisme.
+		 </rdfs:description>
+		 <rdfs:type rdf:resource="http://uy1/m1/groupe22#Genetique"/>
+	</owl:Class>
+	
+	<owl:Class rdf:about="http://uy1/m1/groupe22#AnemieFanconi">
+		<rdfs:subClassOf rdf:resource="http://uy1/m1/groupe22#Desease"/>
+		<!-- Informations sur la maladie -->
+		 <rdfs:label>L'anemie de fanconi</rdfs:label>
+		 <rdfs:description>
+			L'anémie de Fanconi est une maladie génétique rare du sang dans laquelle la moelle osseuse ne produit
+			pas assez de cellules sanguines. Elle entraine dès l'enfance une fatigue importante, une susceptibilité
+			élevée aux infections, des bleus et saignements… Au cours de la croissance et à l'âge adulte, il y a 
+			un fort risque de voir se développer une leucémie (cancer des cellules de la moelle osseuse) ou 
+			d'autres cancers touchant surtout la langue et la gorge.
+		 </rdfs:description>
+		 <rdfs:type rdf:resource="http://uy1/m1/groupe22#Genetique"/>
+	</owl:Class>
+	
+	<!-- Maladies digestives-->
+	<owl:Class rdf:about="http://uy1/m1/groupe22#Hemorroide">
+		<rdfs:subClassOf rdf:resource="http://uy1/m1/groupe22#Desease"/>
+		<!-- Informations sur la maladie -->
+		 <rdfs:label>Hémorroïdes</rdfs:label>
+		 <rdfs:description>
+			Les hémorroïdes sont des veines dilatées qui se forment dans l’anus ou le rectum. Il est normal que 
+			les veines de la région anale se gonflent légèrement au moment de la défécation. Mais contrairement 
+			aux veines normales, les hémorroïdes restent dilatées en permanence.
+		 </rdfs:description>
+		 <rdfs:type rdf:resource="http://uy1/m1/groupe22#Digestive"/>
+	</owl:Class>
+	
+	<owl:Class rdf:about="http://uy1/m1/groupe22#Constipation">
+		<rdfs:subClassOf rdf:resource="http://uy1/m1/groupe22#Desease"/>
+		<!-- Informations sur la maladie -->
+		 <rdfs:label>La constipation chronique ou occasionnelle</rdfs:label>
+		 <rdfs:description>
+			La constipation consiste en un retard ou une difficulté à évacuer les selles. Elle peut être occasionnelle
+			(voyage, grossesse, etc.) ou chronique. On parle de constipation chronique lorsque le problème dure depuis 
+			au moins 6 à 12 mois, avec des symptômes plus ou moins marqués.La fréquence d’évacuation des selles varie 
+			d’une personne à l’autre, allant de 3 fois par jour à 3 fois par semaine. On peut parler de constipation 
+			lorsque les selles sont dures, sèches et difficiles à évacuer. En général, cela survient s’il y a moins de 3
+			selles par semaine.
+		 </rdfs:description>
+		 <rdfs:type rdf:resource="http://uy1/m1/groupe22#Digestive"/>
+	</owl:Class>
+	
+	<owl:Class rdf:about="http://uy1/m1/groupe22#Appendicite">
+		<rdfs:subClassOf rdf:resource="http://uy1/m1/groupe22#Desease"/>
+		<!-- Informations sur la maladie -->
+		 <rdfs:label>L'appendicite</rdfs:label>
+		 <rdfs:description>
+			L’appendicite est une inflammation soudaine de l’appendice — une petite excroissance en forme de ver 
+			(appendix vermiformis) située au début du gros intestin, du côté inférieur droit de l’abdomen. 
+			L’appendicite est souvent le résultat d’une obstruction de cette petite structure anatomique par des 
+			matières fécales, du mucus ou un épaississement du tissu lymphoïde présent. Elle peut aussi être 
+			causée par une tumeur qui obstrue la base de l’appendice. L’appendice devient alors enflé, colonisé 
+			de bactéries et peut éventuellement commencer à se nécroser. La crise survient le plus souvent entre 
+			l’âge de 10 et 30 ans. Elle touche une personne sur 15, et un peu plus souvent les hommes que les 
+			femmes.
+		 </rdfs:description>
+		 <rdfs:type rdf:resource="http://uy1/m1/groupe22#Digestive"/>
+	</owl:Class>
+	
+	<owl:Class rdf:about="http://uy1/m1/groupe22#Diarrhee">
+		<rdfs:subClassOf rdf:resource="http://uy1/m1/groupe22#Desease"/>
+		<!-- Informations sur la maladie -->
+		 <rdfs:label>Diarrhée</rdfs:label>
+		 <rdfs:description>
+			La diarrhée est un problème fréquent. Elle se caractérise par des selles de consistance liquide ou molle,
+			plus volumineuses et nombreuses qu’à l’habitude (plus de 3 selles par jour).Il ne s’agit pas d’une 
+			maladie, mais d’un symptôme de la colite. Sa cause la plus fréquente est l’ingestion d’eau ou 
+			d’aliments contaminés. Elle dure 1 jour ou 2, puis disparaît sans nécessiter de traitement. 
+		 </rdfs:description>
+		 <rdfs:type rdf:resource="http://uy1/m1/groupe22#Digestive"/>
+	</owl:Class>
+	
+	<owl:Class rdf:about="http://uy1/m1/groupe22#calculsBiliaires">
+		<rdfs:subClassOf rdf:resource="http://uy1/m1/groupe22#Desease"/>
+		<!-- Informations sur la maladie -->
+		 <rdfs:label>Calculs biliaires</rdfs:label>
+		 <rdfs:description>
+			On nomme lithiase biliaire, ou cholélithiase, la formation de calculs à l’intérieur de la vésicule 
+			biliaire, l’organe qui emmagasine la bile sécrétée par le foie. Les calculs, qu’on appelle parfois des
+			« pierres » ressemblent effectivement à de petits cailloux. Dans la majorité des cas, ils sont composés 
+			de cholestérol cristallisé. Des calculs faits de pigments biliaires peuvent aussi se former, surtout en cas 
+			de maladie grave au foie ou d’anémie à hématies falciformes, mais il n’en sera pas question ici.La forme,
+			la taille et le nombre des calculs (il peut y en avoir plusieurs centaines) diffèrent d’un individu à l’autre. 
+			Ils peuvent être aussi petits qu’un grain de sable ou gros comme une balle de golf 
+		 </rdfs:description>
+		 <rdfs:type rdf:resource="http://uy1/m1/groupe22#Digestive"/>
+	</owl:Class>
+	
+	<owl:Class rdf:about="http://uy1/m1/groupe22#PolypesIntestinaux">
+		<rdfs:subClassOf rdf:resource="http://uy1/m1/groupe22#Desease"/>
+		<!-- Informations sur la maladie -->
+		 <rdfs:label>les polypes intestinaux</rdfs:label>
+		 <rdfs:description>
+			les polypes intestinaux sont des excroissances qui se forment sur la muqueuse tapissant l'interieur du colon.
+			Elles surviennent chez 30% a 50% des adultes des pays industrialisés, ce qui laisse croire que les facteurs 
+			environnementaux et alimentaires jouent un role dans leur apparition.Les polypes font généralement quelques 
+			millimètres de diamètre, parfois plus d'un centimètre. On les détecte grace a la coloscopie.
+		 </rdfs:description>
+		 <rdfs:type rdf:resource="http://uy1/m1/groupe22#Digestive"/>
+	</owl:Class>
+	
+	
 </rdf:RDF>
 
 
