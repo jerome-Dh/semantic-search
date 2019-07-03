@@ -18,6 +18,8 @@ import java.util.StringTokenizer;
 import java.util.List;
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpSession;
+
 import com.example.pgsql.model.Users;
 
 /**
@@ -33,40 +35,47 @@ public class O4UPRDF extends BaseOnto
 	private static final String FILE_NAME = "O4UPRDF.owl";
 
 	/**
-	 * Constructor
+	 * La session en cours
+	 *
+	 * @var HttpSession
 	 */
-	public O4UPRDF()
+	private HttpSession session;
+
+	/**
+	 * Constructor
+	 *
+	 * @param HttpSession session
+	 */
+	public O4UPRDF(HttpSession session)
 	{
 		super(FILE_NAME);
+		
+		this.session = session;
+
 	}
 	
    	/**
 	 * Lancer une Full search
 	 *
 	 */
-	public List<Disease> fullQuery(String term)
+	public List<Desease> fullQuery(String term)
 	{
 		term = construireRegex(term);
 		/* System.out.println("+\nLe term: " + term + "\n"); */
 
-		List<Disease> response;
+		List<Desease> response;
 
         response = showFullQuery(
-					"select distinct ?classe ?label ?comment ?genre ?lienWiki" +
+					"select distinct ?label ?description" +
 					"	where " +
 						"{ " +
 							"{ " +
 								"?classe a owl:Class ." +
-								"?classe rdfs:label ?label ." +
+								"?classe rdfs:subClassOf pref:Personne ." +
+								"?classe vcard:Given ?label ." +
 								"OPTIONAL { " +
-									"?classe ubis:identifier ?comment ." +
+									"?classe vcard:TITLE ?description ." +
 								"} "+
-								"OPTIONAL { " +
-									"?classe ubis:category ?genre ." +
-								"} "+
-								"OPTIONAL { " +		
-									"?classe ubis:image ?lienWiki ." +
-								"} " +
 							"} " +							
 							"FILTER REGEX(?label, \"" + term + "\", \"i\") ." +
 						"} " +
@@ -86,16 +95,17 @@ public class O4UPRDF extends BaseOnto
 		List<AutoComplete> list;
 
         list = showAutoCompleteQuery(
-                   "select distinct ?label ?genre" +
-				   "	where " +
+                  "select distinct ?label ?description" +
+					"	where " +
 						"{ " +
 							"{ " +
 								"?classe a owl:Class ." +
-								"?classe rdfs:label ?label ." +
+								"?classe rdfs:subClassOf pref:Personne ." +
+								"?classe vcard:Given ?label ." +
 								"OPTIONAL { " +
-									"?classe ubis:category ?genre ." +
+									"?classe vcard:TITLE ?description ." +
 								"} "+
-							"} " +							
+							"} " +				
 							"FILTER REGEX(?label, \"" + term + "\", \"i\") ." +
 						"} " +
 						"LIMIT 20");
@@ -103,31 +113,52 @@ public class O4UPRDF extends BaseOnto
 		return list;
 
     }
-	
+
 	public Users getUser(String login, String password) 
 	{
 		Users user = null;
 
 		user = getUniqueUser(
-					"select distinct ?label ?identifier ?category" +
-					" 	where " +
+					"select distinct ?name ?firstName ?email " +
+					" ?adresse ?tel ?country ?title ?password " +
+					" ?sexe " +
+					" 	where " + 
 						"{ " +
-							"{ " +
-								"?classe a owl:Class ;" +
-								" rdfs:label ?label ;" +
-								" ubis:identifier ?identifier ." +
-								" OPTIONAL { " +		
-									"?classe ubis:category ?category ." +
-								"} " +							
-							"} " +							
-							"FILTER REGEX(?label, \"" + login + "\", \"i\") ." +
-							"FILTER REGEX(?identifier, \"" + password + "\", \"i\") ." +
+							" { " +
+								"?classe a owl:Class ." +
+								"?classe rdfs:subClassOf pref:Personne ." +
+								"?classe vcard:EMAIL ?email ." +
+								"?classe vcard:KEY ?password ." +
+								"OPTIONAL { " +
+									"?classe vcard:FN ?name ." +
+									"?classe vcard:Family ?firstName ." +
+									"?classe vcard:Country ?country ." +
+									"?classe vcard:TEL ?tel ." +
+									"?classe vcard:ADR ?adresse ." +
+									"?classe vcard:TITLE ?title ." +
+									"?classe vcard:Other ?sexe ." +
+								"} " +
+							"} " +						
+							"FILTER REGEX(?email, \"" + login + "\", \"i\") ." +
 						"} " +
 						"LIMIT 1");
 		
 		
 		return user;
 		
+	}
+	
+	/** 
+	 * Utiliser le reasoner ou pas 
+	 *
+	 * @return boolean
+	 */
+	public boolean useReasoner()
+	{
+		String status = (String)this.session.getAttribute("reasoner");
+
+		return (status != null && status.equals("active"));
+
 	}
 
 }
